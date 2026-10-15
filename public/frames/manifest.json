@@ -1,0 +1,1078 @@
+{
+  "version": "1.0.0",
+  "totalFrames": 150,
+  "format": "webp",
+  "dimensions": {
+    "width": 1280,
+    "height": 720,
+    "aspectRatio": 1.7778
+  },
+  "totalSizeBytes": 7075746,
+  "totalSizeMb": 6.75,
+  "poster": "/frames/poster.webp",
+  "keyframes": [
+    1,
+    15,
+    30,
+    45,
+    60,
+    75,
+    90,
+    105,
+    120,
+    135,
+    150
+  ],
+  "frames": [
+    {
+      "index": 1,
+      "filename": "frame-001.webp",
+      "path": "/frames/frame-001.webp",
+      "sizeBytes": 58352,
+      "keyframe": true
+    },
+    {
+      "index": 2,
+      "filename": "frame-002.webp",
+      "path": "/frames/frame-002.webp",
+      "sizeBytes": 57302,
+      "keyframe": false
+    },
+    {
+      "index": 3,
+      "filename": "frame-003.webp",
+      "path": "/frames/frame-003.webp",
+      "sizeBytes": 56122,
+      "keyframe": false
+    },
+    {
+      "index": 4,
+      "filename": "frame-004.webp",
+      "path": "/frames/frame-004.webp",
+      "sizeBytes": 56536,
+      "keyframe": false
+    },
+    {
+      "index": 5,
+      "filename": "frame-005.webp",
+      "path": "/frames/frame-005.webp",
+      "sizeBytes": 56780,
+      "keyframe": false
+    },
+    {
+      "index": 6,
+      "filename": "frame-006.webp",
+      "path": "/frames/frame-006.webp",
+      "sizeBytes": 55110,
+      "keyframe": false
+    },
+    {
+      "index": 7,
+      "filename": "frame-007.webp",
+      "path": "/frames/frame-007.webp",
+      "sizeBytes": 55520,
+      "keyframe": false
+    },
+    {
+      "index": 8,
+      "filename": "frame-008.webp",
+      "path": "/frames/frame-008.webp",
+      "sizeBytes": 56028,
+      "keyframe": false
+    },
+    {
+      "index": 9,
+      "filename": "frame-009.webp",
+      "path": "/frames/frame-009.webp",
+      "sizeBytes": 55234,
+      "keyframe": false
+    },
+    {
+      "index": 10,
+      "filename": "frame-010.webp",
+      "path": "/frames/frame-010.webp",
+      "sizeBytes": 55830,
+      "keyframe": false
+    },
+    {
+      "index": 11,
+      "filename": "frame-011.webp",
+      "path": "/frames/frame-011.webp",
+      "sizeBytes": 56090,
+      "keyframe": false
+    },
+    {
+      "index": 12,
+      "filename": "frame-012.webp",
+      "path": "/frames/frame-012.webp",
+      "sizeBytes": 56038,
+      "keyframe": false
+    },
+    {
+      "index": 13,
+      "filename": "frame-013.webp",
+      "path": "/frames/frame-013.webp",
+      "sizeBytes": 54882,
+      "keyframe": false
+    },
+    {
+      "index": 14,
+      "filename": "frame-014.webp",
+      "path": "/frames/frame-014.webp",
+      "sizeBytes": 55962,
+      "keyframe": false
+    },
+    {
+      "index": 15,
+      "filename": "frame-015.webp",
+      "path": "/frames/frame-015.webp",
+      "sizeBytes": 56934,
+      "keyframe": true
+    },
+    {
+      "index": 16,
+      "filename": "frame-016.webp",
+      "path": "/frames/frame-016.webp",
+      "sizeBytes": 55920,
+      "keyframe": false
+    },
+    {
+      "index": 17,
+      "filename": "frame-017.webp",
+      "path": "/frames/frame-017.webp",
+      "sizeBytes": 55384,
+      "keyframe": false
+    },
+    {
+      "index": 18,
+      "filename": "frame-018.webp",
+      "path": "/frames/frame-018.webp",
+      "sizeBytes": 55632,
+      "keyframe": false
+    },
+    {
+      "index": 19,
+      "filename": "frame-019.webp",
+      "path": "/frames/frame-019.webp",
+      "sizeBytes": 55470,
+      "keyframe": false
+    },
+    {
+      "index": 20,
+      "filename": "frame-020.webp",
+      "path": "/frames/frame-020.webp",
+      "sizeBytes": 56188,
+      "keyframe": false
+    },
+    {
+      "index": 21,
+      "filename": "frame-021.webp",
+      "path": "/frames/frame-021.webp",
+      "sizeBytes": 55198,
+      "keyframe": false
+    },
+    {
+      "index": 22,
+      "filename": "frame-022.webp",
+      "path": "/frames/frame-022.webp",
+      "sizeBytes": 55512,
+      "keyframe": false
+    },
+    {
+      "index": 23,
+      "filename": "frame-023.webp",
+      "path": "/frames/frame-023.webp",
+      "sizeBytes": 55888,
+      "keyframe": false
+    },
+    {
+      "index": 24,
+      "filename": "frame-024.webp",
+      "path": "/frames/frame-024.webp",
+      "sizeBytes": 55304,
+      "keyframe": false
+    },
+    {
+      "index": 25,
+      "filename": "frame-025.webp",
+      "path": "/frames/frame-025.webp",
+      "sizeBytes": 55496,
+      "keyframe": false
+    },
+    {
+      "index": 26,
+      "filename": "frame-026.webp",
+      "path": "/frames/frame-026.webp",
+      "sizeBytes": 56460,
+      "keyframe": false
+    },
+    {
+      "index": 27,
+      "filename": "frame-027.webp",
+      "path": "/frames/frame-027.webp",
+      "sizeBytes": 56056,
+      "keyframe": false
+    },
+    {
+      "index": 28,
+      "filename": "frame-028.webp",
+      "path": "/frames/frame-028.webp",
+      "sizeBytes": 55608,
+      "keyframe": false
+    },
+    {
+      "index": 29,
+      "filename": "frame-029.webp",
+      "path": "/frames/frame-029.webp",
+      "sizeBytes": 55624,
+      "keyframe": false
+    },
+    {
+      "index": 30,
+      "filename": "frame-030.webp",
+      "path": "/frames/frame-030.webp",
+      "sizeBytes": 56722,
+      "keyframe": true
+    },
+    {
+      "index": 31,
+      "filename": "frame-031.webp",
+      "path": "/frames/frame-031.webp",
+      "sizeBytes": 56104,
+      "keyframe": false
+    },
+    {
+      "index": 32,
+      "filename": "frame-032.webp",
+      "path": "/frames/frame-032.webp",
+      "sizeBytes": 55934,
+      "keyframe": false
+    },
+    {
+      "index": 33,
+      "filename": "frame-033.webp",
+      "path": "/frames/frame-033.webp",
+      "sizeBytes": 55986,
+      "keyframe": false
+    },
+    {
+      "index": 34,
+      "filename": "frame-034.webp",
+      "path": "/frames/frame-034.webp",
+      "sizeBytes": 55228,
+      "keyframe": false
+    },
+    {
+      "index": 35,
+      "filename": "frame-035.webp",
+      "path": "/frames/frame-035.webp",
+      "sizeBytes": 56208,
+      "keyframe": false
+    },
+    {
+      "index": 36,
+      "filename": "frame-036.webp",
+      "path": "/frames/frame-036.webp",
+      "sizeBytes": 55060,
+      "keyframe": false
+    },
+    {
+      "index": 37,
+      "filename": "frame-037.webp",
+      "path": "/frames/frame-037.webp",
+      "sizeBytes": 54756,
+      "keyframe": false
+    },
+    {
+      "index": 38,
+      "filename": "frame-038.webp",
+      "path": "/frames/frame-038.webp",
+      "sizeBytes": 55218,
+      "keyframe": false
+    },
+    {
+      "index": 39,
+      "filename": "frame-039.webp",
+      "path": "/frames/frame-039.webp",
+      "sizeBytes": 54562,
+      "keyframe": false
+    },
+    {
+      "index": 40,
+      "filename": "frame-040.webp",
+      "path": "/frames/frame-040.webp",
+      "sizeBytes": 54680,
+      "keyframe": false
+    },
+    {
+      "index": 41,
+      "filename": "frame-041.webp",
+      "path": "/frames/frame-041.webp",
+      "sizeBytes": 54480,
+      "keyframe": false
+    },
+    {
+      "index": 42,
+      "filename": "frame-042.webp",
+      "path": "/frames/frame-042.webp",
+      "sizeBytes": 54038,
+      "keyframe": false
+    },
+    {
+      "index": 43,
+      "filename": "frame-043.webp",
+      "path": "/frames/frame-043.webp",
+      "sizeBytes": 53092,
+      "keyframe": false
+    },
+    {
+      "index": 44,
+      "filename": "frame-044.webp",
+      "path": "/frames/frame-044.webp",
+      "sizeBytes": 52830,
+      "keyframe": false
+    },
+    {
+      "index": 45,
+      "filename": "frame-045.webp",
+      "path": "/frames/frame-045.webp",
+      "sizeBytes": 53962,
+      "keyframe": true
+    },
+    {
+      "index": 46,
+      "filename": "frame-046.webp",
+      "path": "/frames/frame-046.webp",
+      "sizeBytes": 53572,
+      "keyframe": false
+    },
+    {
+      "index": 47,
+      "filename": "frame-047.webp",
+      "path": "/frames/frame-047.webp",
+      "sizeBytes": 52966,
+      "keyframe": false
+    },
+    {
+      "index": 48,
+      "filename": "frame-048.webp",
+      "path": "/frames/frame-048.webp",
+      "sizeBytes": 52924,
+      "keyframe": false
+    },
+    {
+      "index": 49,
+      "filename": "frame-049.webp",
+      "path": "/frames/frame-049.webp",
+      "sizeBytes": 52610,
+      "keyframe": false
+    },
+    {
+      "index": 50,
+      "filename": "frame-050.webp",
+      "path": "/frames/frame-050.webp",
+      "sizeBytes": 53094,
+      "keyframe": false
+    },
+    {
+      "index": 51,
+      "filename": "frame-051.webp",
+      "path": "/frames/frame-051.webp",
+      "sizeBytes": 52272,
+      "keyframe": false
+    },
+    {
+      "index": 52,
+      "filename": "frame-052.webp",
+      "path": "/frames/frame-052.webp",
+      "sizeBytes": 51008,
+      "keyframe": false
+    },
+    {
+      "index": 53,
+      "filename": "frame-053.webp",
+      "path": "/frames/frame-053.webp",
+      "sizeBytes": 50702,
+      "keyframe": false
+    },
+    {
+      "index": 54,
+      "filename": "frame-054.webp",
+      "path": "/frames/frame-054.webp",
+      "sizeBytes": 49886,
+      "keyframe": false
+    },
+    {
+      "index": 55,
+      "filename": "frame-055.webp",
+      "path": "/frames/frame-055.webp",
+      "sizeBytes": 50358,
+      "keyframe": false
+    },
+    {
+      "index": 56,
+      "filename": "frame-056.webp",
+      "path": "/frames/frame-056.webp",
+      "sizeBytes": 50412,
+      "keyframe": false
+    },
+    {
+      "index": 57,
+      "filename": "frame-057.webp",
+      "path": "/frames/frame-057.webp",
+      "sizeBytes": 50432,
+      "keyframe": false
+    },
+    {
+      "index": 58,
+      "filename": "frame-058.webp",
+      "path": "/frames/frame-058.webp",
+      "sizeBytes": 50138,
+      "keyframe": false
+    },
+    {
+      "index": 59,
+      "filename": "frame-059.webp",
+      "path": "/frames/frame-059.webp",
+      "sizeBytes": 49074,
+      "keyframe": false
+    },
+    {
+      "index": 60,
+      "filename": "frame-060.webp",
+      "path": "/frames/frame-060.webp",
+      "sizeBytes": 50366,
+      "keyframe": true
+    },
+    {
+      "index": 61,
+      "filename": "frame-061.webp",
+      "path": "/frames/frame-061.webp",
+      "sizeBytes": 49400,
+      "keyframe": false
+    },
+    {
+      "index": 62,
+      "filename": "frame-062.webp",
+      "path": "/frames/frame-062.webp",
+      "sizeBytes": 48154,
+      "keyframe": false
+    },
+    {
+      "index": 63,
+      "filename": "frame-063.webp",
+      "path": "/frames/frame-063.webp",
+      "sizeBytes": 48318,
+      "keyframe": false
+    },
+    {
+      "index": 64,
+      "filename": "frame-064.webp",
+      "path": "/frames/frame-064.webp",
+      "sizeBytes": 48506,
+      "keyframe": false
+    },
+    {
+      "index": 65,
+      "filename": "frame-065.webp",
+      "path": "/frames/frame-065.webp",
+      "sizeBytes": 49354,
+      "keyframe": false
+    },
+    {
+      "index": 66,
+      "filename": "frame-066.webp",
+      "path": "/frames/frame-066.webp",
+      "sizeBytes": 49342,
+      "keyframe": false
+    },
+    {
+      "index": 67,
+      "filename": "frame-067.webp",
+      "path": "/frames/frame-067.webp",
+      "sizeBytes": 48614,
+      "keyframe": false
+    },
+    {
+      "index": 68,
+      "filename": "frame-068.webp",
+      "path": "/frames/frame-068.webp",
+      "sizeBytes": 47568,
+      "keyframe": false
+    },
+    {
+      "index": 69,
+      "filename": "frame-069.webp",
+      "path": "/frames/frame-069.webp",
+      "sizeBytes": 47890,
+      "keyframe": false
+    },
+    {
+      "index": 70,
+      "filename": "frame-070.webp",
+      "path": "/frames/frame-070.webp",
+      "sizeBytes": 48038,
+      "keyframe": false
+    },
+    {
+      "index": 71,
+      "filename": "frame-071.webp",
+      "path": "/frames/frame-071.webp",
+      "sizeBytes": 47052,
+      "keyframe": false
+    },
+    {
+      "index": 72,
+      "filename": "frame-072.webp",
+      "path": "/frames/frame-072.webp",
+      "sizeBytes": 46932,
+      "keyframe": false
+    },
+    {
+      "index": 73,
+      "filename": "frame-073.webp",
+      "path": "/frames/frame-073.webp",
+      "sizeBytes": 47250,
+      "keyframe": false
+    },
+    {
+      "index": 74,
+      "filename": "frame-074.webp",
+      "path": "/frames/frame-074.webp",
+      "sizeBytes": 48102,
+      "keyframe": false
+    },
+    {
+      "index": 75,
+      "filename": "frame-075.webp",
+      "path": "/frames/frame-075.webp",
+      "sizeBytes": 49042,
+      "keyframe": true
+    },
+    {
+      "index": 76,
+      "filename": "frame-076.webp",
+      "path": "/frames/frame-076.webp",
+      "sizeBytes": 48354,
+      "keyframe": false
+    },
+    {
+      "index": 77,
+      "filename": "frame-077.webp",
+      "path": "/frames/frame-077.webp",
+      "sizeBytes": 48254,
+      "keyframe": false
+    },
+    {
+      "index": 78,
+      "filename": "frame-078.webp",
+      "path": "/frames/frame-078.webp",
+      "sizeBytes": 47976,
+      "keyframe": false
+    },
+    {
+      "index": 79,
+      "filename": "frame-079.webp",
+      "path": "/frames/frame-079.webp",
+      "sizeBytes": 47206,
+      "keyframe": false
+    },
+    {
+      "index": 80,
+      "filename": "frame-080.webp",
+      "path": "/frames/frame-080.webp",
+      "sizeBytes": 48062,
+      "keyframe": false
+    },
+    {
+      "index": 81,
+      "filename": "frame-081.webp",
+      "path": "/frames/frame-081.webp",
+      "sizeBytes": 46764,
+      "keyframe": false
+    },
+    {
+      "index": 82,
+      "filename": "frame-082.webp",
+      "path": "/frames/frame-082.webp",
+      "sizeBytes": 46218,
+      "keyframe": false
+    },
+    {
+      "index": 83,
+      "filename": "frame-083.webp",
+      "path": "/frames/frame-083.webp",
+      "sizeBytes": 46218,
+      "keyframe": false
+    },
+    {
+      "index": 84,
+      "filename": "frame-084.webp",
+      "path": "/frames/frame-084.webp",
+      "sizeBytes": 45676,
+      "keyframe": false
+    },
+    {
+      "index": 85,
+      "filename": "frame-085.webp",
+      "path": "/frames/frame-085.webp",
+      "sizeBytes": 46832,
+      "keyframe": false
+    },
+    {
+      "index": 86,
+      "filename": "frame-086.webp",
+      "path": "/frames/frame-086.webp",
+      "sizeBytes": 44758,
+      "keyframe": false
+    },
+    {
+      "index": 87,
+      "filename": "frame-087.webp",
+      "path": "/frames/frame-087.webp",
+      "sizeBytes": 44782,
+      "keyframe": false
+    },
+    {
+      "index": 88,
+      "filename": "frame-088.webp",
+      "path": "/frames/frame-088.webp",
+      "sizeBytes": 44958,
+      "keyframe": false
+    },
+    {
+      "index": 89,
+      "filename": "frame-089.webp",
+      "path": "/frames/frame-089.webp",
+      "sizeBytes": 43762,
+      "keyframe": false
+    },
+    {
+      "index": 90,
+      "filename": "frame-090.webp",
+      "path": "/frames/frame-090.webp",
+      "sizeBytes": 45410,
+      "keyframe": true
+    },
+    {
+      "index": 91,
+      "filename": "frame-091.webp",
+      "path": "/frames/frame-091.webp",
+      "sizeBytes": 43472,
+      "keyframe": false
+    },
+    {
+      "index": 92,
+      "filename": "frame-092.webp",
+      "path": "/frames/frame-092.webp",
+      "sizeBytes": 43338,
+      "keyframe": false
+    },
+    {
+      "index": 93,
+      "filename": "frame-093.webp",
+      "path": "/frames/frame-093.webp",
+      "sizeBytes": 43326,
+      "keyframe": false
+    },
+    {
+      "index": 94,
+      "filename": "frame-094.webp",
+      "path": "/frames/frame-094.webp",
+      "sizeBytes": 43208,
+      "keyframe": false
+    },
+    {
+      "index": 95,
+      "filename": "frame-095.webp",
+      "path": "/frames/frame-095.webp",
+      "sizeBytes": 44626,
+      "keyframe": false
+    },
+    {
+      "index": 96,
+      "filename": "frame-096.webp",
+      "path": "/frames/frame-096.webp",
+      "sizeBytes": 43236,
+      "keyframe": false
+    },
+    {
+      "index": 97,
+      "filename": "frame-097.webp",
+      "path": "/frames/frame-097.webp",
+      "sizeBytes": 43258,
+      "keyframe": false
+    },
+    {
+      "index": 98,
+      "filename": "frame-098.webp",
+      "path": "/frames/frame-098.webp",
+      "sizeBytes": 42646,
+      "keyframe": false
+    },
+    {
+      "index": 99,
+      "filename": "frame-099.webp",
+      "path": "/frames/frame-099.webp",
+      "sizeBytes": 42292,
+      "keyframe": false
+    },
+    {
+      "index": 100,
+      "filename": "frame-100.webp",
+      "path": "/frames/frame-100.webp",
+      "sizeBytes": 43176,
+      "keyframe": false
+    },
+    {
+      "index": 101,
+      "filename": "frame-101.webp",
+      "path": "/frames/frame-101.webp",
+      "sizeBytes": 43266,
+      "keyframe": false
+    },
+    {
+      "index": 102,
+      "filename": "frame-102.webp",
+      "path": "/frames/frame-102.webp",
+      "sizeBytes": 42898,
+      "keyframe": false
+    },
+    {
+      "index": 103,
+      "filename": "frame-103.webp",
+      "path": "/frames/frame-103.webp",
+      "sizeBytes": 42268,
+      "keyframe": false
+    },
+    {
+      "index": 104,
+      "filename": "frame-104.webp",
+      "path": "/frames/frame-104.webp",
+      "sizeBytes": 42166,
+      "keyframe": false
+    },
+    {
+      "index": 105,
+      "filename": "frame-105.webp",
+      "path": "/frames/frame-105.webp",
+      "sizeBytes": 42960,
+      "keyframe": true
+    },
+    {
+      "index": 106,
+      "filename": "frame-106.webp",
+      "path": "/frames/frame-106.webp",
+      "sizeBytes": 42228,
+      "keyframe": false
+    },
+    {
+      "index": 107,
+      "filename": "frame-107.webp",
+      "path": "/frames/frame-107.webp",
+      "sizeBytes": 41620,
+      "keyframe": false
+    },
+    {
+      "index": 108,
+      "filename": "frame-108.webp",
+      "path": "/frames/frame-108.webp",
+      "sizeBytes": 41284,
+      "keyframe": false
+    },
+    {
+      "index": 109,
+      "filename": "frame-109.webp",
+      "path": "/frames/frame-109.webp",
+      "sizeBytes": 41362,
+      "keyframe": false
+    },
+    {
+      "index": 110,
+      "filename": "frame-110.webp",
+      "path": "/frames/frame-110.webp",
+      "sizeBytes": 42152,
+      "keyframe": false
+    },
+    {
+      "index": 111,
+      "filename": "frame-111.webp",
+      "path": "/frames/frame-111.webp",
+      "sizeBytes": 41550,
+      "keyframe": false
+    },
+    {
+      "index": 112,
+      "filename": "frame-112.webp",
+      "path": "/frames/frame-112.webp",
+      "sizeBytes": 41164,
+      "keyframe": false
+    },
+    {
+      "index": 113,
+      "filename": "frame-113.webp",
+      "path": "/frames/frame-113.webp",
+      "sizeBytes": 40710,
+      "keyframe": false
+    },
+    {
+      "index": 114,
+      "filename": "frame-114.webp",
+      "path": "/frames/frame-114.webp",
+      "sizeBytes": 40264,
+      "keyframe": false
+    },
+    {
+      "index": 115,
+      "filename": "frame-115.webp",
+      "path": "/frames/frame-115.webp",
+      "sizeBytes": 40476,
+      "keyframe": false
+    },
+    {
+      "index": 116,
+      "filename": "frame-116.webp",
+      "path": "/frames/frame-116.webp",
+      "sizeBytes": 39392,
+      "keyframe": false
+    },
+    {
+      "index": 117,
+      "filename": "frame-117.webp",
+      "path": "/frames/frame-117.webp",
+      "sizeBytes": 38868,
+      "keyframe": false
+    },
+    {
+      "index": 118,
+      "filename": "frame-118.webp",
+      "path": "/frames/frame-118.webp",
+      "sizeBytes": 38578,
+      "keyframe": false
+    },
+    {
+      "index": 119,
+      "filename": "frame-119.webp",
+      "path": "/frames/frame-119.webp",
+      "sizeBytes": 38168,
+      "keyframe": false
+    },
+    {
+      "index": 120,
+      "filename": "frame-120.webp",
+      "path": "/frames/frame-120.webp",
+      "sizeBytes": 39436,
+      "keyframe": true
+    },
+    {
+      "index": 121,
+      "filename": "frame-121.webp",
+      "path": "/frames/frame-121.webp",
+      "sizeBytes": 38834,
+      "keyframe": false
+    },
+    {
+      "index": 122,
+      "filename": "frame-122.webp",
+      "path": "/frames/frame-122.webp",
+      "sizeBytes": 38310,
+      "keyframe": false
+    },
+    {
+      "index": 123,
+      "filename": "frame-123.webp",
+      "path": "/frames/frame-123.webp",
+      "sizeBytes": 38036,
+      "keyframe": false
+    },
+    {
+      "index": 124,
+      "filename": "frame-124.webp",
+      "path": "/frames/frame-124.webp",
+      "sizeBytes": 37936,
+      "keyframe": false
+    },
+    {
+      "index": 125,
+      "filename": "frame-125.webp",
+      "path": "/frames/frame-125.webp",
+      "sizeBytes": 38288,
+      "keyframe": false
+    },
+    {
+      "index": 126,
+      "filename": "frame-126.webp",
+      "path": "/frames/frame-126.webp",
+      "sizeBytes": 37522,
+      "keyframe": false
+    },
+    {
+      "index": 127,
+      "filename": "frame-127.webp",
+      "path": "/frames/frame-127.webp",
+      "sizeBytes": 37322,
+      "keyframe": false
+    },
+    {
+      "index": 128,
+      "filename": "frame-128.webp",
+      "path": "/frames/frame-128.webp",
+      "sizeBytes": 37208,
+      "keyframe": false
+    },
+    {
+      "index": 129,
+      "filename": "frame-129.webp",
+      "path": "/frames/frame-129.webp",
+      "sizeBytes": 37512,
+      "keyframe": false
+    },
+    {
+      "index": 130,
+      "filename": "frame-130.webp",
+      "path": "/frames/frame-130.webp",
+      "sizeBytes": 38152,
+      "keyframe": false
+    },
+    {
+      "index": 131,
+      "filename": "frame-131.webp",
+      "path": "/frames/frame-131.webp",
+      "sizeBytes": 38144,
+      "keyframe": false
+    },
+    {
+      "index": 132,
+      "filename": "frame-132.webp",
+      "path": "/frames/frame-132.webp",
+      "sizeBytes": 37834,
+      "keyframe": false
+    },
+    {
+      "index": 133,
+      "filename": "frame-133.webp",
+      "path": "/frames/frame-133.webp",
+      "sizeBytes": 37594,
+      "keyframe": false
+    },
+    {
+      "index": 134,
+      "filename": "frame-134.webp",
+      "path": "/frames/frame-134.webp",
+      "sizeBytes": 37670,
+      "keyframe": false
+    },
+    {
+      "index": 135,
+      "filename": "frame-135.webp",
+      "path": "/frames/frame-135.webp",
+      "sizeBytes": 37792,
+      "keyframe": true
+    },
+    {
+      "index": 136,
+      "filename": "frame-136.webp",
+      "path": "/frames/frame-136.webp",
+      "sizeBytes": 37236,
+      "keyframe": false
+    },
+    {
+      "index": 137,
+      "filename": "frame-137.webp",
+      "path": "/frames/frame-137.webp",
+      "sizeBytes": 37056,
+      "keyframe": false
+    },
+    {
+      "index": 138,
+      "filename": "frame-138.webp",
+      "path": "/frames/frame-138.webp",
+      "sizeBytes": 37330,
+      "keyframe": false
+    },
+    {
+      "index": 139,
+      "filename": "frame-139.webp",
+      "path": "/frames/frame-139.webp",
+      "sizeBytes": 38080,
+      "keyframe": false
+    },
+    {
+      "index": 140,
+      "filename": "frame-140.webp",
+      "path": "/frames/frame-140.webp",
+      "sizeBytes": 38026,
+      "keyframe": false
+    },
+    {
+      "index": 141,
+      "filename": "frame-141.webp",
+      "path": "/frames/frame-141.webp",
+      "sizeBytes": 37454,
+      "keyframe": false
+    },
+    {
+      "index": 142,
+      "filename": "frame-142.webp",
+      "path": "/frames/frame-142.webp",
+      "sizeBytes": 37522,
+      "keyframe": false
+    },
+    {
+      "index": 143,
+      "filename": "frame-143.webp",
+      "path": "/frames/frame-143.webp",
+      "sizeBytes": 37648,
+      "keyframe": false
+    },
+    {
+      "index": 144,
+      "filename": "frame-144.webp",
+      "path": "/frames/frame-144.webp",
+      "sizeBytes": 37732,
+      "keyframe": false
+    },
+    {
+      "index": 145,
+      "filename": "frame-145.webp",
+      "path": "/frames/frame-145.webp",
+      "sizeBytes": 37826,
+      "keyframe": false
+    },
+    {
+      "index": 146,
+      "filename": "frame-146.webp",
+      "path": "/frames/frame-146.webp",
+      "sizeBytes": 37864,
+      "keyframe": false
+    },
+    {
+      "index": 147,
+      "filename": "frame-147.webp",
+      "path": "/frames/frame-147.webp",
+      "sizeBytes": 37360,
+      "keyframe": false
+    },
+    {
+      "index": 148,
+      "filename": "frame-148.webp",
+      "path": "/frames/frame-148.webp",
+      "sizeBytes": 37788,
+      "keyframe": false
+    },
+    {
+      "index": 149,
+      "filename": "frame-149.webp",
+      "path": "/frames/frame-149.webp",
+      "sizeBytes": 37636,
+      "keyframe": false
+    },
+    {
+      "index": 150,
+      "filename": "frame-150.webp",
+      "path": "/frames/frame-150.webp",
+      "sizeBytes": 37720,
+      "keyframe": true
+    }
+  ]
+}

@@ -1,0 +1,40 @@
+@import "tailwindcss";
+
+@theme {
+  --font-serif: var(--font-serif), Georgia, Cambria, "Times New Roman", serif;
+  --font-sans: var(--font-sans), -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+
+  /* Artisanal honey and amber OKLCH color palette */
+  --color-amber-50: oklch(0.98 0.02 85);
+  --color-amber-100: oklch(0.95 0.05 85);
+  --color-amber-200: oklch(0.90 0.09 82);
+  --color-amber-300: oklch(0.84 0.13 80);
+  --color-amber-400: oklch(0.77 0.16 75);
+  --color-amber-500: oklch(0.70 0.18 70);
+  --color-amber-600: oklch(0.62 0.17 65);
+  --color-amber-700: oklch(0.52 0.15 60);
+  --color-amber-800: oklch(0.42 0.12 55);
+  --color-amber-900: oklch(0.32 0.09 50);
+  --color-amber-950: oklch(0.20 0.06 45);
+
+  --color-gold-light: oklch(0.92 0.10 90);
+  --color-gold: oklch(0.80 0.16 85);
+  --color-gold-dark: oklch(0.68 0.17 75);
+  --color-honey: oklch(0.76 0.17 78);
+  --color-honey-dark: oklch(0.58 0.16 65);
+
+  --color-cream: oklch(0.985 0.015 85);
+  --color-cream-muted: oklch(0.96 0.02 85);
+  --color-charcoal: oklch(0.22 0.02 50);
+  --color-charcoal-deep: oklch(0.14 0.015 50);
+}
+
+:root {
+  --background: var(--color-cream);
+  --foreground: var(--color-charcoal);
+}
+
+body {
+  background-color: var(--background);
+  color: var(--foreground);
+}
