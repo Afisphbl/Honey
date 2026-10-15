@@ -1,0 +1,11 @@
+{
+  "tool": "vitest",
+  "gate": null,
+  "additionalTools": [
+    "@testing-library/react"
+  ],
+  "e2eTool": "cypress",
+  "testDir": "beside the source",
+  "filePattern": "*.test.ts",
+  "packageManager": "npm"
+}
