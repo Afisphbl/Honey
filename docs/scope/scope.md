@@ -13,8 +13,8 @@ _These are recommendations to keep your build orderly, not requirements. Skip an
 |---|---------|-------|--------|
 | 1 | Stack & architecture | Foundation | done |
 | 2 | Coding standards & tooling | Foundation | planned |
-| 3 | Data model | Foundation | planned |
-| 4 | Design system & UI foundation | Foundation | planned |
+| 3 | Data model | Foundation | done |
+| 4 | Design system & UI foundation | Foundation | in-progress |
 | 5 | Core storefront loop & scroll hero | Slice 1 | planned |
 | 6 | Product catalog & tasting notes | Slice 2 | planned |
 | 7 | Brand heritage & apiary story | Slice 3 | planned |
@@ -39,15 +39,39 @@ Capture conventions, then install linting, code formatting, and pre-commit check
 **Done when:** root `AGENTS.md` reflects the real stack, and lint and format checks run clean.
 - [ ] Capture conventions + tooling choices: `/audit`
 
-### 3. Data model · needs a decision
+### 3. Data model
+spec [0002](../specs/0002-data-model/index.md) · code in `src/lib/catalog/`
+
 Define core honey catalog entities, product variants (weights and jar sizes), inventory status, and cart session state.
 **Done when:** entities and relationships represent products, jar volumes, prices, and cart sessions without ambiguity.
-- [ ] Design it (spec): `/architect data model`
+- [x] Design it (spec): `/architect data model`
+- [x] Build it: `/develop data model`
+  - [x] TypeScript domain interfaces and Zod validation schemas (AC-1, AC-2)
+  - [x] Artisanal catalog seed records and query functions (AC-3)
+  - [x] Pure pricing utilities and cart store type unification (AC-4, AC-5)
+  - [x] Order route handler and price revalidation (AC-6)
+- [x] Verify it: `/check verify data model`
+- [x] Test it: `/test data model`
+- [x] Review it (fresh model): `/check review data model`
+- [x] Document it: `/document data model`
 
-### 4. Design system & UI foundation · needs a decision
+### 4. Design system & UI foundation
+spec [0003](../specs/0003-design-system-and-ui-foundation/index.md) · code in `src/components/ui/`
+
 Artisanal honey visual language, warm amber and gold tones, rich typography, fluid spacing, and base interactive components, guided by the installed craft skills `impeccable`, `ui-ux-pro-max-skill`, and `taste-skill` located in `C:\Users\YES-COMPUTER-ET\.gemini\config\skills`.
 **Done when:** `design.md` covers type, color tokens, layout primitives, and base components meet accessible contrast standards.
-- [ ] Design it (spec): `/architect design system & UI foundation`
+- [x] Design it (spec): `/architect design system & UI foundation`
+- [x] Build it: `/develop design system & UI foundation`
+  - [x] Visual system specification in `design.md` (AC-1)
+  - [x] Tailwind v4 `@theme` OKLCH tokens, fluid typography utilities, and scrollbar gutter (AC-2)
+  - [x] Class merging helper `cn` in `src/lib/utils.ts` (AC-3)
+  - [x] Base interactive primitives: Button with asChild, Badge, Card, and QuantitySelector (AC-4)
+  - [x] Accessible Radix UI overlay primitives: Drawer, Dialog, and Tabs (AC-5, AC-6)
+- [x] Verify it: `/check verify design system & UI foundation`
+- [x] Test it: `/test design system & UI foundation`
+- [ ] Review it (fresh model): `/check review design system & UI foundation`
+- [ ] Document it: `/document design system & UI foundation`
+
 
 ## Slice 1: Core storefront loop & scroll hero
 

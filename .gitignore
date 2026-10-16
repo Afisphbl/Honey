@@ -4,6 +4,8 @@
 *.zip
 temp-raw-frames/
 .agents/
+.claude/
+agent/
 skills-lock.json
 
 # dependencies

@@ -14,7 +14,44 @@ Tracer Bullet (prove the whole pipe works with thin vertical slices through ever
 ## Stack
 Next.js App Router (React 19), TypeScript, Tailwind CSS v4, HTML5 Canvas 2D, Zustand with local storage persistence, Vitest, Cypress, Vercel.
 
+## Commands
+
+```bash
+# Install
+npm install
+
+# Dev server
+npm run dev
+
+# Build
+npm run build
+
+# Test
+npm test
+
+# Lint
+npm run lint
+
+# Optimize frames
+npm run optimize:frames
+```
+
+## Specs
+
+Stored in `docs/specs/`. Format: `docs/specs/NNNN-title/index.md`.
+
+## Rules
+
+- Use Server Components by default; mark interactive components with `'use client'`
+- Import modules with `@/*` mapping to `./src/*`
+- Keep browser memory bounded under 80MB during canvas animations and cap DPR at 2
+- Zustand stores persist state with an explicit `hasHydrated` guard against SSR hydration mismatch
+- Honor accessibility settings and `prefers-reduced-motion` across animations
+- Unit tests live beside source files or inside `__tests__/` and run via Vitest
+
 ## UI / UX design
+- Design system: build all UI to `design.md` (art direction and the maximalist product bar); token values live in CSS.
+
 For all UI and UX design work across the storefront (visual hierarchy, art direction, luxury color tokens, editorial typography, motion, and component polish), always use and follow these design craft skills:
 - [impeccable](file:///C:/Users/YES-COMPUTER-ET/.gemini/config/skills/impeccable): Frontend interface craftsmanship, critique, design systems, spacing, and micro-interactions
 - [taste-skill](file:///C:/Users/YES-COMPUTER-ET/.gemini/config/skills/taste-skill): Visual taste, editorial aesthetics, luxury typography, and spatial composition
@@ -27,3 +64,12 @@ For all UI and UX design work across the storefront (visual hierarchy, art direc
 - [vitest](.agents/skills/vitest/): `antfu/skills`, Vitest unit and component testing conventions
 - [zustand](.agents/skills/zustand/): `lobehub/lobehub`, Zustand client state store patterns
 - [cypress-docs](.agents/skills/cypress-docs/): `cypress-io/ai-toolkit`, Cypress end to end browser testing guidance
+- [zod](.agents/skills/zod/): `pproenca/dot-skills`, Zod runtime validation and schema definition patterns
+
+## Context files
+
+- [src/components/ui/AGENTS.md](src/components/ui/AGENTS.md) (Accessible UI primitives, Radix overlays, and quantity stepper)
+- [src/lib/canvas/AGENTS.md](src/lib/canvas/AGENTS.md) (Canvas rendering, sliding frame cache, and memory limits)
+- [src/lib/catalog/AGENTS.md](src/lib/catalog/AGENTS.md) (Artisanal honey catalog data, Zod validation schemas, and pricing calculations)
+
+_Drafted by /audit from the repo, worth a quick human pass. Edit freely: once a line stops matching this draft, later runs treat it as curated and will flag rather than overwrite it._
