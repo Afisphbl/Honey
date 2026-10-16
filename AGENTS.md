@@ -50,6 +50,8 @@ Stored in `docs/specs/`. Format: `docs/specs/NNNN-title/index.md`.
 - Unit tests live beside source files or inside `__tests__/` and run via Vitest
 
 ## UI / UX design
+- Design system: build all UI to `design.md` (art direction and the maximalist product bar); token values live in CSS.
+
 For all UI and UX design work across the storefront (visual hierarchy, art direction, luxury color tokens, editorial typography, motion, and component polish), always use and follow these design craft skills:
 - [impeccable](file:///C:/Users/YES-COMPUTER-ET/.gemini/config/skills/impeccable): Frontend interface craftsmanship, critique, design systems, spacing, and micro-interactions
 - [taste-skill](file:///C:/Users/YES-COMPUTER-ET/.gemini/config/skills/taste-skill): Visual taste, editorial aesthetics, luxury typography, and spatial composition
@@ -66,6 +68,7 @@ For all UI and UX design work across the storefront (visual hierarchy, art direc
 
 ## Context files
 
+- [src/components/ui/AGENTS.md](src/components/ui/AGENTS.md) (Accessible UI primitives, Radix overlays, and quantity stepper)
 - [src/lib/canvas/AGENTS.md](src/lib/canvas/AGENTS.md) (Canvas rendering, sliding frame cache, and memory limits)
 - [src/lib/catalog/AGENTS.md](src/lib/catalog/AGENTS.md) (Artisanal honey catalog data, Zod validation schemas, and pricing calculations)
 

@@ -14,7 +14,7 @@ _These are recommendations to keep your build orderly, not requirements. Skip an
 | 1 | Stack & architecture | Foundation | done |
 | 2 | Coding standards & tooling | Foundation | planned |
 | 3 | Data model | Foundation | done |
-| 4 | Design system & UI foundation | Foundation | planned |
+| 4 | Design system & UI foundation | Foundation | in-progress |
 | 5 | Core storefront loop & scroll hero | Slice 1 | planned |
 | 6 | Product catalog & tasting notes | Slice 2 | planned |
 | 7 | Brand heritage & apiary story | Slice 3 | planned |
@@ -55,10 +55,23 @@ Define core honey catalog entities, product variants (weights and jar sizes), in
 - [x] Review it (fresh model): `/check review data model`
 - [x] Document it: `/document data model`
 
-### 4. Design system & UI foundation · needs a decision
+### 4. Design system & UI foundation
+spec [0003](../specs/0003-design-system-and-ui-foundation/index.md) · code in `src/components/ui/`
+
 Artisanal honey visual language, warm amber and gold tones, rich typography, fluid spacing, and base interactive components, guided by the installed craft skills `impeccable`, `ui-ux-pro-max-skill`, and `taste-skill` located in `C:\Users\YES-COMPUTER-ET\.gemini\config\skills`.
 **Done when:** `design.md` covers type, color tokens, layout primitives, and base components meet accessible contrast standards.
-- [ ] Design it (spec): `/architect design system & UI foundation`
+- [x] Design it (spec): `/architect design system & UI foundation`
+- [x] Build it: `/develop design system & UI foundation`
+  - [x] Visual system specification in `design.md` (AC-1)
+  - [x] Tailwind v4 `@theme` OKLCH tokens, fluid typography utilities, and scrollbar gutter (AC-2)
+  - [x] Class merging helper `cn` in `src/lib/utils.ts` (AC-3)
+  - [x] Base interactive primitives: Button with asChild, Badge, Card, and QuantitySelector (AC-4)
+  - [x] Accessible Radix UI overlay primitives: Drawer, Dialog, and Tabs (AC-5, AC-6)
+- [x] Verify it: `/check verify design system & UI foundation`
+- [x] Test it: `/test design system & UI foundation`
+- [ ] Review it (fresh model): `/check review design system & UI foundation`
+- [ ] Document it: `/document design system & UI foundation`
+
 
 ## Slice 1: Core storefront loop & scroll hero
 

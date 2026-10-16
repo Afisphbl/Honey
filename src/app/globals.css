@@ -27,6 +27,53 @@
   --color-cream-muted: oklch(0.96 0.02 85);
   --color-charcoal: oklch(0.22 0.02 50);
   --color-charcoal-deep: oklch(0.14 0.015 50);
+
+  /* Viscous easing for tactile honey physics */
+  --ease-viscous: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@utility text-display {
+  font-family: var(--font-serif);
+  font-size: clamp(2.5rem, 6vw, 4.5rem);
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+}
+
+@utility text-title {
+  font-family: var(--font-serif);
+  font-size: clamp(1.75rem, 3.5vw, 2.75rem);
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+}
+
+@utility text-subtitle {
+  font-family: var(--font-serif);
+  font-size: clamp(1.25rem, 2vw, 1.75rem);
+  line-height: 1.3;
+}
+
+@utility text-body {
+  font-family: var(--font-sans);
+  font-size: clamp(0.95rem, 1vw, 1.05rem);
+  line-height: 1.6;
+}
+
+@utility text-caption {
+  font-family: var(--font-sans);
+  font-size: clamp(0.75rem, 0.85vw, 0.85rem);
+  line-height: 1.4;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+@utility focus-ring {
+  outline: 2px solid transparent;
+  outline-offset: 2px;
+  box-shadow: 0 0 0 2px var(--color-cream), 0 0 0 4px var(--color-amber-800);
+}
+
+html {
+  scrollbar-gutter: stable;
 }
 
 :root {
@@ -37,4 +84,15 @@
 body {
   background-color: var(--background);
   color: var(--foreground);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }
