@@ -163,3 +163,53 @@ export interface OrderTotals {
   shippingFeeCents: number;
   totalCents: number;
 }
+
+export type HarvestSeason = "spring" | "summer" | "autumn" | "winter";
+
+export type HoneyAvailabilityStatus =
+  | "harvesting"
+  | "aging"
+  | "reserve"
+  | "dormant";
+
+export interface SeasonalCyclePhase {
+  id: string;
+  season: HarvestSeason;
+  title: string;
+  timeframeMonths: string;
+  apicultureActivity: string;
+  activeFlora: string[];
+  honeyAvailability: HoneyAvailabilityStatus;
+  featuredProductIds?: string[];
+  storyExcerpt: string;
+}
+
+export interface PurityStandard {
+  id: string;
+  name: string;
+  verificationMetric: string;
+  testingMethod: string;
+  issuingAuthority: string;
+  thresholdRequirement: string;
+  description: string;
+  badgeIcon: string;
+}
+
+export type PledgeCategory =
+  | "hive_welfare"
+  | "raw_purity"
+  | "terroir_conservation"
+  | "fair_trade";
+
+export interface BeekeepingPledge {
+  id: string;
+  title: string;
+  category: PledgeCategory;
+  statement: string;
+  details: string;
+  badgeIcon: string;
+}
+
+export interface ApiaryOriginDetail extends ApiaryOrigin {
+  products: Product[];
+}

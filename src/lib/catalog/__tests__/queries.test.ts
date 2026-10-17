@@ -2,11 +2,17 @@ import { describe, it, expect } from "vitest";
 import {
   filterAndSortProducts,
   getAllProducts,
+  getApiaryOriginById,
+  getApiaryOriginDetails,
+  getApiaryOrigins,
+  getBeekeepingPledges,
   getCategoryCounts,
   getFeaturedProduct,
   getProductById,
   getProductBySlug,
   getProductDisplayPrice,
+  getPurityStandards,
+  getSeasonalCyclePhases,
   getVariantById,
 } from "../queries";
 
@@ -218,6 +224,72 @@ describe("Catalog Queries (satisfies AC-1, AC-3)", () => {
     const sorted = getAllProducts({ sortBy: "featured" });
     expect(sorted.length).toBeGreaterThan(0);
     expect(sorted[0].isFeatured).toBe(true);
+  });
+
+  describe("Brand Heritage & Apiary Narrative Queries (satisfies AC-2, AC-3, AC-4, AC-5)", () => {
+    it("retrieves all four apiary origins (AC-2)", () => {
+      const origins = getApiaryOrigins();
+      expect(origins.length).toBe(4);
+      const originIds = origins.map((o) => o.id);
+      expect(originIds).toContain("catskill-highlands");
+      expect(originIds).toContain("black-forest-foothills");
+      expect(originIds).toContain("valensole-plateau");
+      expect(originIds).toContain("apalachicola-basin");
+    });
+
+    it("retrieves specific apiary origin by ID and returns undefined for unknown ID", () => {
+      const catskills = getApiaryOriginById("catskill-highlands");
+      expect(catskills).toBeDefined();
+      expect(catskills?.region).toContain("Catskill");
+      expect(catskills?.elevationMeters).toBe(680);
+
+      const unknown = getApiaryOriginById("unknown-peak");
+      expect(unknown).toBeUndefined();
+    });
+
+    it("retrieves seasonal cycle phases for all four seasons (AC-3)", () => {
+      const phases = getSeasonalCyclePhases();
+      expect(phases.length).toBe(4);
+      expect(phases.map((p) => p.season)).toEqual([
+        "spring",
+        "summer",
+        "autumn",
+        "winter",
+      ]);
+    });
+
+    it("retrieves laboratory purity standards (AC-4)", () => {
+      const standards = getPurityStandards();
+      expect(standards.length).toBe(4);
+      const ids = standards.map((s) => s.id);
+      expect(ids).toContain("nmr-spectral-profiling");
+      expect(ids).toContain("moisture-content-limit");
+      expect(ids).toContain("pesticide-residue-zero");
+      expect(ids).toContain("raw-unpasteurized-cert");
+    });
+
+    it("retrieves ethical beekeeping pledges (AC-5)", () => {
+      const pledges = getBeekeepingPledges();
+      expect(pledges.length).toBe(4);
+      const categories = pledges.map((p) => p.category);
+      expect(categories).toContain("hive_welfare");
+      expect(categories).toContain("raw_purity");
+      expect(categories).toContain("terroir_conservation");
+      expect(categories).toContain("fair_trade");
+    });
+
+    it("retrieves origin details composite with harvested products (AC-2)", () => {
+      const detail = getApiaryOriginDetails("catskill-highlands");
+      expect(detail).toBeDefined();
+      expect(detail?.id).toBe("catskill-highlands");
+      expect(detail?.products.length).toBeGreaterThanOrEqual(1);
+      for (const prod of detail?.products ?? []) {
+        expect(prod.originId).toBe("catskill-highlands");
+      }
+
+      const unknown = getApiaryOriginDetails("unknown-origin");
+      expect(unknown).toBeUndefined();
+    });
   });
 });
 

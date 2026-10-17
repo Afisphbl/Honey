@@ -1,17 +1,27 @@
 import { describe, it, expect } from "vitest";
 import {
+  ApiaryOriginDetailSchema,
   ApiaryOriginSchema,
+  BeekeepingPledgeSchema,
   CartItemSchema,
+  HarvestSeasonSchema,
+  HoneyAvailabilityStatusSchema,
   OrderSubmissionSchema,
+  PledgeCategorySchema,
+  PurityStandardSchema,
   ProductSchema,
   ProductVariantSchema,
+  SeasonalCyclePhaseSchema,
   ShippingAddressSchema,
   TastingProfileSchema,
 } from "../schema";
 import {
   APIARY_ORIGINS,
+  BEEKEEPING_PLEDGES,
   PRODUCTS,
   PRODUCT_VARIANTS,
+  PURITY_STANDARDS,
+  SEASONAL_CYCLE_PHASES,
   TASTING_PROFILES,
 } from "../data";
 
@@ -403,6 +413,60 @@ describe("Catalog Schema and Invariants Validation (satisfies AC-1, AC-2, AC-3)"
 
       const result = OrderSubmissionSchema.safeParse(excessiveOrder);
       expect(result.success).toBe(false);
+    });
+  });
+
+  describe("Brand Heritage & Apiary Narrative Schemas (satisfies AC-2, AC-3, AC-4, AC-5)", () => {
+    it("validates all seasonal cycle phases against SeasonalCyclePhaseSchema (AC-3)", () => {
+      expect(SEASONAL_CYCLE_PHASES.length).toBe(4);
+      const seasons = SEASONAL_CYCLE_PHASES.map((p) => p.season);
+      expect(seasons).toEqual(["spring", "summer", "autumn", "winter"]);
+
+      for (const phase of SEASONAL_CYCLE_PHASES) {
+        const result = SeasonalCyclePhaseSchema.safeParse(phase);
+        expect(result.success).toBe(true);
+        expect(phase.activeFlora.length).toBeGreaterThanOrEqual(1);
+        expect(phase.storyExcerpt.length).toBeGreaterThan(20);
+      }
+    });
+
+    it("validates all purity standards against PurityStandardSchema (AC-4)", () => {
+      expect(PURITY_STANDARDS.length).toBe(4);
+      for (const standard of PURITY_STANDARDS) {
+        const result = PurityStandardSchema.safeParse(standard);
+        expect(result.success).toBe(true);
+        expect(standard.verificationMetric.length).toBeGreaterThan(3);
+        expect(standard.testingMethod.length).toBeGreaterThan(5);
+        expect(standard.issuingAuthority.length).toBeGreaterThan(5);
+      }
+    });
+
+    it("validates all beekeeping pledges against BeekeepingPledgeSchema (AC-5)", () => {
+      expect(BEEKEEPING_PLEDGES.length).toBe(4);
+      for (const pledge of BEEKEEPING_PLEDGES) {
+        const result = BeekeepingPledgeSchema.safeParse(pledge);
+        expect(result.success).toBe(true);
+        expect(pledge.statement.length).toBeGreaterThan(15);
+        expect(pledge.details.length).toBeGreaterThan(30);
+      }
+    });
+
+    it("validates ApiaryOriginDetailSchema composite structure (AC-2)", () => {
+      const origin = APIARY_ORIGINS[0];
+      const originProducts = PRODUCTS.filter((p) => p.originId === origin.id);
+      const originDetail = {
+        ...origin,
+        products: originProducts,
+      };
+
+      const result = ApiaryOriginDetailSchema.safeParse(originDetail);
+      expect(result.success).toBe(true);
+    });
+
+    it("rejects invalid harvest season or honey availability status values", () => {
+      expect(HarvestSeasonSchema.safeParse("monsoon").success).toBe(false);
+      expect(HoneyAvailabilityStatusSchema.safeParse("expired").success).toBe(false);
+      expect(PledgeCategorySchema.safeParse("profit_maximization").success).toBe(false);
     });
   });
 });

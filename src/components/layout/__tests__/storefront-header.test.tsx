@@ -30,6 +30,16 @@ describe("StorefrontHeader component (satisfies AC-1, AC-6)", () => {
     expect(catalogLink).toHaveAttribute("href", "/catalog");
   });
 
+  it("links to /about with Brand Heritage & Apiaries text (AC-1)", () => {
+    render(<StorefrontHeader />);
+
+    const aboutLink = screen.getByRole("link", {
+      name: /brand heritage & apiaries/i,
+    });
+    expect(aboutLink).toBeInTheDocument();
+    expect(aboutLink).toHaveAttribute("href", "/about");
+  });
+
   it("renders brand logo linking to home", () => {
     render(<StorefrontHeader />);
 

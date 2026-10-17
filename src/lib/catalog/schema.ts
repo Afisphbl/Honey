@@ -204,3 +204,62 @@ export const OrderSummarySchema = z.object({
   status: OrderStatusSchema,
   createdAt: z.string().min(1),
 });
+
+export const HarvestSeasonSchema = z.enum([
+  "spring",
+  "summer",
+  "autumn",
+  "winter",
+]);
+
+export const HoneyAvailabilityStatusSchema = z.enum([
+  "harvesting",
+  "aging",
+  "reserve",
+  "dormant",
+]);
+
+export const SeasonalCyclePhaseSchema = z.object({
+  id: z.string().min(1, "Phase ID is required"),
+  season: HarvestSeasonSchema,
+  title: z.string().min(1, "Title is required"),
+  timeframeMonths: z.string().min(1, "Timeframe months is required"),
+  apicultureActivity: z.string().min(1, "Apiculture activity is required"),
+  activeFlora: z
+    .array(z.string().min(1))
+    .min(1, "At least one active flora is required"),
+  honeyAvailability: HoneyAvailabilityStatusSchema,
+  featuredProductIds: z.array(z.string().min(1)).optional(),
+  storyExcerpt: z.string().min(1, "Story excerpt is required"),
+});
+
+export const PurityStandardSchema = z.object({
+  id: z.string().min(1, "Purity standard ID is required"),
+  name: z.string().min(1, "Purity standard name is required"),
+  verificationMetric: z.string().min(1, "Verification metric is required"),
+  testingMethod: z.string().min(1, "Testing method is required"),
+  issuingAuthority: z.string().min(1, "Issuing authority is required"),
+  thresholdRequirement: z.string().min(1, "Threshold requirement is required"),
+  description: z.string().min(1, "Description is required"),
+  badgeIcon: z.string().min(1, "Badge icon is required"),
+});
+
+export const PledgeCategorySchema = z.enum([
+  "hive_welfare",
+  "raw_purity",
+  "terroir_conservation",
+  "fair_trade",
+]);
+
+export const BeekeepingPledgeSchema = z.object({
+  id: z.string().min(1, "Pledge ID is required"),
+  title: z.string().min(1, "Title is required"),
+  category: PledgeCategorySchema,
+  statement: z.string().min(1, "Pledge statement is required"),
+  details: z.string().min(1, "Pledge details are required"),
+  badgeIcon: z.string().min(1, "Badge icon is required"),
+});
+
+export const ApiaryOriginDetailSchema = ApiaryOriginSchema.extend({
+  products: z.array(ProductSchema),
+});

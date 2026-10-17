@@ -1,4 +1,5 @@
 import React from "react";
+import Link from "next/link";
 import { ShieldCheck, Leaf, HeartHandshake, Award } from "lucide-react";
 
 /**
@@ -86,6 +87,35 @@ export function StorefrontFooter() {
           </div>
 
           <div className="flex flex-col sm:flex-row gap-6 text-xs text-cream-muted/70">
+            <div className="flex flex-col gap-1.5">
+              <span className="font-bold uppercase tracking-wider text-gold-light">
+                Storefront
+              </span>
+              <Link
+                href="/catalog"
+                className="hover:text-gold-light transition-colors"
+              >
+                Reserves Catalog
+              </Link>
+              <Link
+                href="/about"
+                className="hover:text-gold-light transition-colors"
+              >
+                Brand Heritage & Apiaries
+              </Link>
+              <Link
+                href="/about#terroir-atlas"
+                className="hover:text-gold-light transition-colors"
+              >
+                Apiary Terroir Atlas
+              </Link>
+              <Link
+                href="/about#purity-standards"
+                className="hover:text-gold-light transition-colors"
+              >
+                Purity Verification
+              </Link>
+            </div>
             <div className="flex flex-col gap-1.5">
               <span className="font-bold uppercase tracking-wider text-gold-light">
                 Apiary Headquarters

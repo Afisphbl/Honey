@@ -1,49 +1,33 @@
 # Review, development, 2026-10-17
 
 **Reviewed by**: Gemini Pro (author on Gemini Flash)
-**Scope**: 25 files, branch vs main
-**Verdict**: Blocked
+**Scope**: 24 files, branch vs base
+**Verdict**: Changes requested
 
 ## Summary
-The change introduces a dedicated product catalog route at `/catalog` with responsive grid layouts, category filtering tabs, URL search parameter synchronization, and expandable tasting drawers with native CSS grid transitions. Overall implementation quality, sensory visual polish, and accessibility semantics are strong. However, a type mismatch in `src/components/layout/__tests__/storefront-header.test.tsx` causes `next build` type checking to fail, blocking production deployment until corrected.
-
-## Blockers
-### 🔴 Invalid addItem parameter breaks build type check, `src/components/layout/__tests__/storefront-header.test.tsx:56`
-**Problem**: The test passes a raw string literal (`"raw-wildflower-reserve-250g"`) to `useCartStore.getState().addItem(...)` instead of an object satisfying the `CartInputItem` contract.
-**Why it matters**: When running `next build` or `tsc --noEmit`, TypeScript fails with error TS2345. This halts the production build step and prevents deployment.
-**Suggested fix**: Update the test call to pass a valid `CartInputItem` object containing `id`, `productId`, `variantId`, `title`, and `unitPriceCents`.
+You did great work setting up the brand heritage narrative at `/about`. The page looks polished, keyboard navigation across tabs is accessible, and the test suite covers every acceptance criterion. We have one major correctness issue where European apiary coordinates display with West longitude instead of East longitude. We should fix that coordinate formatting before merging.
 
 ## Major
-### 🟠 Hardcoded fallback domain data and prices in bundle card, `src/components/catalog/bundle-card.tsx:143`
-**Problem**: The bundle card embeds hardcoded fallback JSX with three specific honey products (Raw Wildflower, Pure Acacia, Mountain Lavender) and fallback price numbers (8800 and 11400) if relations are not resolved.
-**Why it matters**: If a new tasting flight or bundle is added without pre populating `includedProducts` or variant pricing, the UI displays false product items and incorrect prices to customers rather than failing safely or displaying an honest empty state.
-**Suggested fix**: Remove the hardcoded varietal chips and prices. Derive displayed items strictly from `product.includedProducts`, and render an appropriate empty state or omit the section when no child products are linked.
+### 🟠 Hardcoded West longitude direction displays incorrect coordinates for European apiaries, `src/components/about/apiary-terroir-atlas.tsx:153`
+**Problem**: The coordinate badge hardcodes the letter W for longitude across all origins. The Black Forest foothills in Germany have longitude 8.1256, and the Valensole plateau in France has longitude 5.9844. Both locations sit east of the Prime Meridian with positive coordinates. The badge displays them as 8.1256° W and 5.9844° W.
+**Why it matters**: Labeling them with West places both apiaries in the Atlantic Ocean off the coast of Spain or Ireland. For a luxury single origin honey brand that promises verified terroir truth and geographic authenticity, showing wrong hemisphere coordinates undermines customer trust.
+**Suggested fix**: Format longitude dynamically based on the sign of the coordinate. If longitude is greater than or equal to zero, append E (for East), otherwise append W (for West). Do the same check for latitude with N and S for consistency.
 
 ## Minor
-### 🟡 Missing group utility class on product card container, `src/components/catalog/product-card.tsx:123`
-**Problem**: The product jar `Image` component specifies `group-hover:scale-105`, but neither the wrapping `article` nor the image container defines the Tailwind `group` class.
-**Why it matters**: The subtle zoom micro interaction on product jar hover does not trigger, leaving the visual presentation static during mouse hover.
-**Suggested fix**: Add `group` to the parent `article` or the immediate image container element so hover events propagate to the image.
-
-### 🟡 Filter updates purge non catalog query parameters from URL, `src/components/catalog/catalog-view.tsx:80`
-**Problem**: The `updateQueryParam` helper constructs a brand new `URLSearchParams()` object from scratch on every change instead of reading existing parameters from the current URL.
-**Why it matters**: If a shopper lands on `/catalog` with marketing campaign parameters such as UTM tags or referral tokens, clicking any category filter or sort option purges all tracking parameters from the URL.
-**Suggested fix**: Initialize `URLSearchParams` with `searchParams.toString()`, then update or delete only `category`, `sort`, and `inStock`.
-
-### 🟡 Repetitive price computation in sort comparator loop, `src/lib/catalog/queries.ts:98`
-**Problem**: In `filterAndSortProducts`, the comparator functions for `price_asc` and `price_desc` invoke `getProductDisplayPrice` on every pair comparison inside the sorting loop.
-**Why it matters**: Calling helper functions that iterate over variant arrays on every comparison adds unnecessary CPU work and object allocations during sorting.
-**Suggested fix**: Precompute default prices or read `defaultVariant.priceCents` directly during sorting.
+### 🟡 URL query parameter updater drops external parameters and eagerly sets default season, `src/components/about/about-view.tsx:73`
+**Problem**: The updateQueryParams helper creates a fresh empty URLSearchParams instance. If a visitor arrives from a newsletter link with tracking parameters such as utm_source, clicking an origin tab erases those parameters. It also writes both origin and season parameters to the URL even when you only selected an origin tab.
+**Why it matters**: Campaign tracking tags get dropped when visitors interact with the page, and the URL gains an unneeded default season query string.
+**Suggested fix**: Initialize URLSearchParams from the current searchParams string to retain existing query keys. Update only the specific parameter passed in the update argument.
 
 ## Nits
-- ⚪ `src/components/catalog/bundle-card.tsx:105`, The badge text `3 x 125g Tasting Jars Included` is hardcoded and should be computed from the included items length.
-- ⚪ `src/components/catalog/product-card.tsx:48`, Reading `selectedVariant.priceCents` without optional chaining or fallback could throw a runtime exception if a product has an empty variants collection.
+* ⚪ `src/types/catalog.ts:166`, use the existing HarvestSeason union and HoneyAvailabilityStatus union for props and label records in seasonal-harvest-cycle.tsx instead of loose string types.
+* ⚪ `src/app/about/page.tsx:48`, mapping originList through getApiaryOriginDetails calls find on the same array four times; you can resolve products directly or add a batch query helper.
+* ⚪ `src/components/about/apiary-terroir-atlas.tsx:130`, splitting region by comma works for existing regions, but using an explicit short title property on the origin model would avoid depending on comma formatting.
 
 ## Strengths
-- Comprehensive accessibility semantics across all interactive surfaces, including `role="tablist"` on category filters, `role="switch"` on in stock toggles, `role="radiogroup"` on variant sizes, and `role="meter"` on sensory ratings.
-- Smooth zero dependency sensory drawer expansion built on native Tailwind CSS grid transitions (`grid-template-rows: 0fr` to `1fr`) with full support for `prefers-reduced-motion`.
-- Resilient URL search parameter normalization in `CatalogView` that silently cleans invalid categories or sort keys to safe defaults without runtime crashes.
-- Extensive test coverage with 209 passing Vitest unit and component tests plus Cypress end to end browser journeys.
+* Accessible keyboard navigation across all tablists with roving tabindex, arrow key navigation, and correct ARIA roles for tabs and tabpanels.
+* Thoughtful handling of dormant seasons and empty harvests with the resting badge and direct links to the catalog.
+* Complete test suite with 248 passing unit tests and dedicated Cypress end to end browser tests covering all eight acceptance criteria.
 
 ## Test coverage
-Vitest test suites cover all newly created catalog components, query functions, pricing logic, and routing orchestrators. 209 unit tests pass across 28 test suites. The only test flaw is the type signature misuse in `src/components/layout/__tests__/storefront-header.test.tsx:56`, which was caught during TypeScript build compilation rather than Vitest execution.
+Your test coverage is thorough and well organized. You added unit tests for the new Zod schemas, pure catalog queries, each narrative component, and the full about page route. Cypress covers user navigation, shallow URL updates, keyboard control, and reduced motion settings. The only test gap was that the atlas unit test used mock coordinates and did not assert the longitude direction letter for European origins, which allowed the East and West coordinate bug to pass through unnoticed.

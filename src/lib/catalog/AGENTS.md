@@ -6,10 +6,10 @@ Governed by spec [0002-data-model](../../../docs/specs/0002-data-model/index.md)
 
 ## Structure
 
-- `data.ts`: Static artisanal honey dataset with authentic harvest years, batch numbers, terroir origins, tasting profiles, and hero frame bounds
-- `schema.ts`: Runtime Zod validation schemas for products, variants, shipping addresses, cart line items, and order submissions
+- `data.ts`: Static artisanal honey dataset with authentic harvest years, batch numbers, terroir origins, seasonal harvest phases, laboratory purity standards, ethical pledges, and hero frame bounds
+- `schema.ts`: Runtime Zod validation schemas for products, variants, seasonal phases, purity standards, pledges, shipping addresses, cart line items, and order submissions
 - `pricing.ts`: Pure calculation helpers for line item totals, order subtotal cents, shipping fee tiers, and cart quantity limit validation
-- `queries.ts`: Pure lookup, filtering, and sorting functions for products, variants, category counts, and bundle relations
+- `queries.ts`: Pure lookup, filtering, and sorting functions for products, variants, category counts, seasonal phases, purity standards, pledges, and apiary details
 - `__tests__/`: Vitest test suites covering schema validation, pricing arithmetic, and catalog queries
 
 ## Rules and constraints

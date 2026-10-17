@@ -72,6 +72,12 @@ export function StorefrontHeader({
             All Reserves & Catalog
           </Link>
           <Link
+            href="/about"
+            className="text-amber-950 font-semibold hover:text-amber-800 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-800 rounded-sm px-1 py-0.5"
+          >
+            Brand Heritage & Apiaries
+          </Link>
+          <Link
             href="/#featured-reserve"
             className="hover:text-amber-900 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-800 rounded-sm px-1 py-0.5"
           >

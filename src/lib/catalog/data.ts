@@ -1,4 +1,12 @@
-import { ApiaryOrigin, Product, ProductVariant, TastingProfile } from "@/types/catalog";
+import {
+  ApiaryOrigin,
+  BeekeepingPledge,
+  Product,
+  ProductVariant,
+  PurityStandard,
+  SeasonalCyclePhase,
+  TastingProfile,
+} from "@/types/catalog";
 
 export const APIARY_ORIGINS: ApiaryOrigin[] = [
   {
@@ -378,5 +386,173 @@ export const PRODUCT_VARIANTS: ProductVariant[] = [
     compareAtPriceCents: 11400,
     isDefault: true,
     imageUrl: "/frames/frame-001.webp",
+  },
+];
+
+export const SEASONAL_CYCLE_PHASES: SeasonalCyclePhase[] = [
+  {
+    id: "spring-awakening",
+    season: "spring",
+    title: "Spring Awakening & Early Blossom",
+    timeframeMonths: "April to May",
+    apicultureActivity:
+      "Brood chamber inspection, colony health assessment, and wax foundation building",
+    activeFlora: [
+      "Basswood Linden",
+      "Wild Apple Blossom",
+      "Meadow Dandelion",
+    ],
+    honeyAvailability: "harvesting",
+    featuredProductIds: ["raw-wildflower-reserve"],
+    storyExcerpt:
+      "As mountain snowpacks recede, our colonies emerge from winter cluster. Worker bees forage early tree nectars to replenish brood reserves, signaling the start of the seasonal flow.",
+  },
+  {
+    id: "summer-nectar-flow",
+    season: "summer",
+    title: "High Summer Nectar Flow",
+    timeframeMonths: "June to July",
+    apicultureActivity:
+      "Super box addition, active foraging surveillance, and daily moisture monitoring",
+    activeFlora: [
+      "Highland Lavender",
+      "Black Locust Acacia",
+      "Sweet Clover",
+      "Wild Thyme",
+    ],
+    honeyAvailability: "harvesting",
+    featuredProductIds: [
+      "mountain-lavender-infusion",
+      "pure-acacia-blossom",
+    ],
+    storyExcerpt:
+      "Peak floral canopy convergence across alpine valleys and lavender plateaus. Hives hum with non stop foraging flights, evaporating ambient nectar into viscous liquid gold.",
+  },
+  {
+    id: "autumn-harvest-pressing",
+    season: "autumn",
+    title: "Autumn Harvest & Comb Pressing",
+    timeframeMonths: "August to September",
+    apicultureActivity:
+      "Cold comb extraction, raw gravity filtration, batch bottling, and surplus assessment",
+    activeFlora: [
+      "Purple Loosestrife",
+      "Late Goldenrod",
+      "Wild Aster",
+    ],
+    honeyAvailability: "reserve",
+    featuredProductIds: ["raw-artisan-comb"],
+    storyExcerpt:
+      "Beekeepers harvest only the capped surplus, leaving sixty pounds of untouched honey in each hive for winter survival. Fresh comb is hand cut and cold spun within hours.",
+  },
+  {
+    id: "winter-colony-rest",
+    season: "winter",
+    title: "Winter Cluster & Apiary Slumber",
+    timeframeMonths: "October to March",
+    apicultureActivity:
+      "Hive winterization, windbreak maintenance, and thermal sensor monitoring",
+    activeFlora: [
+      "Dormant Highland Pine",
+      "Subalpine Fir Canopies",
+    ],
+    honeyAvailability: "dormant",
+    featuredProductIds: [],
+    storyExcerpt:
+      "The apiary enters deep quiescence. Tens of thousands of honeybees form an insulating cluster around the queen, vibrating flight muscles to maintain an internal 95°F core through subzero mountain blizzards.",
+  },
+];
+
+export const PURITY_STANDARDS: PurityStandard[] = [
+  {
+    id: "nmr-spectral-profiling",
+    name: "Nuclear Magnetic Resonance (NMR) Profiling",
+    verificationMetric: "100% Botanical Pollen Concordance",
+    testingMethod: "High resolution 400 MHz NMR Spectroscopy",
+    issuingAuthority: "European Apiculture Purity Laboratory, QSI Bremen",
+    thresholdRequirement:
+      "Zero synthetic syrups, zero C4 sugar markers, verified geographical origin fingerprint",
+    description:
+      "Nuclear Magnetic Resonance spectroscopy analyzes the unique magnetic resonance of honey molecules against an international reference database. Every batch is certified free from adulteration with corn syrup, rice syrup, or beet sugar.",
+    badgeIcon: "microscope",
+  },
+  {
+    id: "moisture-content-limit",
+    name: "Sub-18% Moisture Content Standard",
+    verificationMetric: "16.8% Average Harvest Moisture",
+    testingMethod: "Digital Refractometric Brix Calibration",
+    issuingAuthority: "International Honey Commission (IHC) Standard",
+    thresholdRequirement:
+      "Moisture strictly below 18.0% (standard allows 20.0%)",
+    description:
+      "Moisture content determines viscosity, enzyme longevity, and fermentation resistance. We harvest only fully capped combs, ensuring low water concentration that preserves raw enzymes indefinitely without heating.",
+    badgeIcon: "droplets",
+  },
+  {
+    id: "pesticide-residue-zero",
+    name: "Zero Synthetic Pesticide Residue",
+    verificationMetric: "0.00 ppm Synthetic Contaminants",
+    testingMethod: "Triple Quadrupole LC-MS/MS Trace Chemical Screen",
+    issuingAuthority: "Eurofins Scientific Independent Food Laboratories",
+    thresholdRequirement:
+      "Non-detectable thresholds for neonicotinoids, glyphosates, and amitraz (< 0.01 mg/kg)",
+    description:
+      "Our apiaries reside in secluded mountain valleys and river basins isolated by at least three miles from industrial agriculture. Multi target mass spectrometry screens every lot for over 450 environmental toxins.",
+    badgeIcon: "shield-check",
+  },
+  {
+    id: "raw-unpasteurized-cert",
+    name: "Raw Unpasteurized & Living Enzymes",
+    verificationMetric: "> 18 Diastase Enzyme Units",
+    testingMethod: "Schade Diastase Activity & Invertase Assays",
+    issuingAuthority: "National Apiculture Quality Assurance Registry",
+    thresholdRequirement:
+      "Cold spun strictly below 95°F (35°C), zero microfiltration",
+    description:
+      "Commercial honey is heated to 160°F to prevent crystallization, killing beneficial living invertase enzymes and bio active pollen. Our jars never exceed natural hive temperatures, keeping botanical pollen intact.",
+    badgeIcon: "sparkles",
+  },
+];
+
+export const BEEKEEPING_PLEDGES: BeekeepingPledge[] = [
+  {
+    id: "hive-welfare-first",
+    title: "Colony Welfare Over Extraction Yield",
+    category: "hive_welfare",
+    statement:
+      "We never feed synthetic corn syrup or strip colonies of their essential winter sustenance.",
+    details:
+      "Traditional apiaries often extract every drop of honey and feed colonies high fructose corn syrup. We leave at least sixty pounds of capped single origin honey in every brood chamber so bees thrive on natural botanical nutrients through the frost.",
+    badgeIcon: "heart-handshake",
+  },
+  {
+    id: "cold-gravity-extraction",
+    title: "Raw Cold Extraction Guarantee",
+    category: "raw_purity",
+    statement:
+      "Zero flash heating, zero pressure microfiltration, zero artificial additives.",
+    details:
+      "All honeycomb is uncapped by hand with cold stainless blades, spun gently in centrifuges, and coarse strained through woven cotton. Live enzymes, royal jelly traces, and botanical pollen grains remain unharmed.",
+    badgeIcon: "snowflake",
+  },
+  {
+    id: "terroir-conservation",
+    title: "Wildflower Terroir Conservation",
+    category: "terroir_conservation",
+    statement:
+      "Protecting wild forage ecosystems and natural buffer corridors surrounding each apiary.",
+    details:
+      "We partner with highland forestry trusts, organic lavender farms, and conservation easements to ensure our forage perimeters remain completely free of synthetic fungicides, herbicides, and mono crop stressors.",
+    badgeIcon: "leaf",
+  },
+  {
+    id: "fair-trade-stewardship",
+    title: "Fair Trade Apiary Stewardship",
+    category: "fair_trade",
+    statement:
+      "Transparent living wages and multi generational beekeeper equity across all harvest sites.",
+    details:
+      "Every master beekeeper earns a direct premium above market honey indices, funding sustainable apiary expansion, solar powered honey houses, and ongoing apiculture apprenticeship programs.",
+    badgeIcon: "award",
   },
 ];

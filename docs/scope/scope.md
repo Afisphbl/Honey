@@ -17,7 +17,7 @@ _These are recommendations to keep your build orderly, not requirements. Skip an
 | 4 | Design system & UI foundation | Foundation | done |
 | 5 | Core storefront loop & scroll hero | Slice 1 | done |
 | 6 | Product catalog & tasting notes | Slice 2 | done |
-| 7 | Brand heritage & apiary story | Slice 3 | planned |
+| 7 | Brand heritage & apiary story | Slice 3 | done |
 | 8 | Cart drawer & order completion | Slice 4 | planned |
 
 ## Foundations
@@ -112,10 +112,22 @@ Browse premium honey varieties (Raw Wildflower, Acacia, Lavender, Comb honey) wi
 
 ## Slice 3: Brand heritage & apiary story
 
-### 7. Brand heritage & apiary story · needs a decision
+### 7. Brand heritage & apiary story
+spec [0006](../specs/0006-brand-heritage-and-apiary-story/index.md) · code in `src/app/about/` and `src/components/about/`
+
 Narrative journey highlighting sustainable beekeeping, ethical hive management, raw extraction purity badges, and seasonal harvest timeline.
 **Done when:** visitor can read the harvest timeline, review purity test verification badges, and explore the apiary locations.
-- [ ] Design it (spec): `/architect brand heritage & apiary story`
+- [x] Design it (spec): `/architect brand heritage & apiary story`
+- [x] Build it: `/develop brand heritage & apiary story`
+  - [x] Domain schemas, types, and artisanal seed records for seasons, purity badges, and pledges (AC-2, AC-3, AC-4, AC-5)
+  - [x] Pure catalog query helpers and origin detail relation resolvers (AC-2, AC-3, AC-4, AC-5)
+  - [x] Interactive Apiary Terroir Atlas with origin tabs, elevation markers, and URL parameter sync (AC-2, AC-6, AC-7, AC-8)
+  - [x] Interactive Seasonal Harvest Cycle with bloom notes and honey availability badges (AC-3, AC-6, AC-8)
+  - [x] Laboratory purity verification grid, ethical beekeeping pledges, and dedicated `/about` page route (AC-1, AC-4, AC-5)
+- [x] Verify it: `/check verify brand heritage & apiary story`
+- [x] Test it: `/test brand heritage & apiary story`
+- [x] Review it (fresh model): `/check review brand heritage & apiary story`
+- [x] Document it: `/document brand heritage & apiary story`
 
 ## Slice 4: Cart drawer & order completion
 

@@ -1,14 +1,22 @@
 import {
   APIARY_ORIGINS,
+  BEEKEEPING_PLEDGES,
   PRODUCTS,
   PRODUCT_VARIANTS,
+  PURITY_STANDARDS,
+  SEASONAL_CYCLE_PHASES,
   TASTING_PROFILES,
 } from "./data";
 import {
+  ApiaryOrigin,
+  ApiaryOriginDetail,
+  BeekeepingPledge,
   Product,
   ProductCategory,
   ProductVariant,
   ProductWithRelations,
+  PurityStandard,
+  SeasonalCyclePhase,
 } from "@/types/catalog";
 
 export type CatalogSortOption =
@@ -193,4 +201,36 @@ export function getVariantById(
   if (!product) return null;
 
   return { variant, product };
+}
+
+export function getApiaryOrigins(): ApiaryOrigin[] {
+  return APIARY_ORIGINS;
+}
+
+export function getApiaryOriginById(id: string): ApiaryOrigin | undefined {
+  return APIARY_ORIGINS.find((origin) => origin.id === id);
+}
+
+export function getSeasonalCyclePhases(): SeasonalCyclePhase[] {
+  return SEASONAL_CYCLE_PHASES;
+}
+
+export function getPurityStandards(): PurityStandard[] {
+  return PURITY_STANDARDS;
+}
+
+export function getBeekeepingPledges(): BeekeepingPledge[] {
+  return BEEKEEPING_PLEDGES;
+}
+
+export function getApiaryOriginDetails(
+  id: string
+): ApiaryOriginDetail | undefined {
+  const origin = APIARY_ORIGINS.find((o) => o.id === id);
+  if (!origin) return undefined;
+  const products = PRODUCTS.filter((p) => p.originId === id);
+  return {
+    ...origin,
+    products,
+  };
 }
