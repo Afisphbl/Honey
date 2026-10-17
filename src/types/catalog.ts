@@ -91,6 +91,7 @@ export interface ProductWithRelations extends Product {
   origin: ApiaryOrigin;
   tastingProfile: TastingProfile;
   variants: ProductVariant[];
+  includedProducts?: Product[];
 }
 
 export interface LegacyCartVariant {

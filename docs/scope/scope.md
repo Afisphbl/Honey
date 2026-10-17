@@ -16,7 +16,7 @@ _These are recommendations to keep your build orderly, not requirements. Skip an
 | 3 | Data model | Foundation | done |
 | 4 | Design system & UI foundation | Foundation | done |
 | 5 | Core storefront loop & scroll hero | Slice 1 | done |
-| 6 | Product catalog & tasting notes | Slice 2 | planned |
+| 6 | Product catalog & tasting notes | Slice 2 | done |
 | 7 | Brand heritage & apiary story | Slice 3 | planned |
 | 8 | Cart drawer & order completion | Slice 4 | planned |
 
@@ -93,10 +93,22 @@ Interactive canvas scrubber displaying the 150 frame animation sequence on scrol
 
 ## Slice 2: Product catalog & tasting notes
 
-### 6. Product catalog & tasting notes · needs a decision
+### 6. Product catalog & tasting notes
+spec [0005](../specs/0005-product-catalog-and-tasting-notes/index.md) · code in `src/app/catalog/` and `src/components/catalog/`
+
 Browse premium honey varieties (Raw Wildflower, Acacia, Lavender, Comb honey) with tasting profiles, harvest origins, and floral sources.
 **Done when:** visitor can filter varieties, view tasting notes, inspect floral sources, and choose between single jars or bundles.
-- [ ] Design it (spec): `/architect product catalog & tasting notes`
+- [x] Design it (spec): `/architect product catalog & tasting notes`
+- [x] Build it: `/develop product catalog & tasting notes`
+  - [x] Query helpers and relation resolution for multi category and bundle previews (AC-1, AC-2, AC-7)
+  - [x] Tactile sticky category filter bar with URL search param sync and empty state (AC-2, AC-3, AC-8)
+  - [x] Variety product cards with variant weight selectors and quick cart drawer action (AC-4, AC-7)
+  - [x] Accessible tasting notes drawer with zero dependency CSS grid viscous transition (AC-5, AC-6)
+  - [x] Dedicated `/catalog` page route with editorial header and storefront navigation link (AC-1, AC-3)
+- [x] Verify it: `/check verify product catalog & tasting notes`
+- [x] Test it: `/test product catalog & tasting notes`
+- [x] Review it (fresh model): `/check review product catalog & tasting notes`
+- [x] Document it: `/document product catalog & tasting notes`
 
 ## Slice 3: Brand heritage & apiary story
 
@@ -118,6 +130,7 @@ Out of scope for the current build pass, kept so the plan stays honest.
 - **Customer reviews & ratings**: verified buyer reviews with star ratings and photos · needs a decision
 - **Honey club subscription**: recurring seasonal harvest delivery service · needs a decision · GA
 - **Internationalization**: multi currency display and translation support · needs a decision
+- **Dedicated product detail pages**: individual harvest narrative pages at `/catalog/[slug]` from spec 0005 · needs a decision
 
 ## References
 

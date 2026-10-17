@@ -7,8 +7,9 @@ import {
   getClampedDevicePixelRatio,
 } from "@/lib/canvas/frame-loader";
 import { useScrollFrame } from "@/lib/canvas/use-scroll-frame";
+import Link from "next/link";
 import { cn } from "@/lib/utils";
-import { SlidersHorizontal, Sparkles } from "lucide-react";
+import { SlidersHorizontal, Sparkles, ArrowRight } from "lucide-react";
 
 export interface HeroCanvasScrubberProps {
   containerRef: React.RefObject<HTMLElement | null>;
@@ -164,6 +165,22 @@ export function HeroCanvasScrubber({
             Harvested raw without pasteurization or fine pressure filtration.
             Scroll below to inspect the extraction viscosity of our Catskill Wildflower reserve frame by frame.
           </p>
+
+          <div className="flex flex-wrap items-center justify-center gap-3 mt-6">
+            <Link
+              href="/catalog"
+              className="h-10 px-5 rounded-full bg-amber-800 text-cream text-xs font-semibold tracking-wider uppercase flex items-center gap-2 hover:bg-amber-900 active:scale-95 transition-all shadow-xs focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-800"
+            >
+              <span>Explore All Reserves</span>
+              <ArrowRight size={13} aria-hidden="true" />
+            </Link>
+            <a
+              href="#featured-reserve"
+              className="h-10 px-5 rounded-full bg-cream/90 backdrop-blur-md border border-amber-300 text-charcoal text-xs font-semibold tracking-wider uppercase flex items-center gap-2 hover:bg-amber-100/80 active:scale-95 transition-all shadow-xs focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-800"
+            >
+              <span>Featured Reserve</span>
+            </a>
+          </div>
         </div>
       </div>
 

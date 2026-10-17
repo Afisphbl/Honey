@@ -70,6 +70,7 @@ For all UI and UX design work across the storefront (visual hierarchy, art direc
 
 - [src/components/ui/AGENTS.md](src/components/ui/AGENTS.md) (Accessible UI primitives, Radix overlays, and quantity stepper)
 - [src/components/hero/AGENTS.md](src/components/hero/AGENTS.md) (Full screen hero canvas stage, scroll scrubber, and featured buy box)
+- [src/components/catalog/AGENTS.md](src/components/catalog/AGENTS.md) (Variety cards, sticky filter bar, bundle previews, and accessible tasting drawers)
 - [src/lib/canvas/AGENTS.md](src/lib/canvas/AGENTS.md) (Canvas rendering, sliding frame cache, and memory limits)
 - [src/lib/catalog/AGENTS.md](src/lib/catalog/AGENTS.md) (Artisanal honey catalog data, Zod validation schemas, and pricing calculations)
 

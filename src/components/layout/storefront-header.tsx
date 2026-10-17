@@ -63,32 +63,32 @@ export function StorefrontHeader({
         {/* Editorial Navigation Links */}
         <nav
           aria-label="Main Navigation"
-          className="hidden md:flex items-center gap-8 text-sm font-medium text-charcoal/80"
+          className="hidden md:flex items-center gap-7 text-sm font-medium text-charcoal/80"
         >
-          <a
-            href="#harvest-story"
-            className="hover:text-amber-900 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-800 rounded-sm px-1 py-0.5"
+          <Link
+            href="/catalog"
+            className="text-amber-950 font-semibold hover:text-amber-800 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-800 rounded-sm px-1 py-0.5"
           >
-            Extraction Story
-          </a>
-          <a
-            href="#featured-reserve"
+            All Reserves & Catalog
+          </Link>
+          <Link
+            href="/#featured-reserve"
             className="hover:text-amber-900 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-800 rounded-sm px-1 py-0.5"
           >
             Featured Reserve
-          </a>
-          <a
-            href="#tasting-profile"
+          </Link>
+          <Link
+            href="/#tasting-profile"
             className="hover:text-amber-900 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-800 rounded-sm px-1 py-0.5"
           >
-            Tasting Notes
-          </a>
-          <a
-            href="#purity-standard"
+            Sensory Craft
+          </Link>
+          <Link
+            href="/#purity-standard"
             className="hover:text-amber-900 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-800 rounded-sm px-1 py-0.5"
           >
             Purity Standards
-          </a>
+          </Link>
         </nav>
 
         {/* Cart Trigger Button */}

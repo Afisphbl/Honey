@@ -1,43 +1,49 @@
 # Review, development, 2026-10-17
 
 **Reviewed by**: Gemini Pro (author on Gemini Flash)
-**Scope**: 22 files, branch vs main
-**Verdict**: Changes requested
+**Scope**: 25 files, branch vs main
+**Verdict**: Blocked
 
 ## Summary
-This change set builds the full screen canvas hero stage, scroll scrubber, editorial header, and sequential featured buy box with reactive cart drawer integration. The visual polish, luxury styling, and end to end cart interaction work smoothly, and 156 unit tests pass alongside browser Cypress testing. One major performance issue in frame prefetching must be addressed, along with minor fixes for navigation anchor linking and checkout alerts before merge.
+The change introduces a dedicated product catalog route at `/catalog` with responsive grid layouts, category filtering tabs, URL search parameter synchronization, and expandable tasting drawers with native CSS grid transitions. Overall implementation quality, sensory visual polish, and accessibility semantics are strong. However, a type mismatch in `src/components/layout/__tests__/storefront-header.test.tsx` causes `next build` type checking to fail, blocking production deployment until corrected.
+
+## Blockers
+### 🔴 Invalid addItem parameter breaks build type check, `src/components/layout/__tests__/storefront-header.test.tsx:56`
+**Problem**: The test passes a raw string literal (`"raw-wildflower-reserve-250g"`) to `useCartStore.getState().addItem(...)` instead of an object satisfying the `CartInputItem` contract.
+**Why it matters**: When running `next build` or `tsc --noEmit`, TypeScript fails with error TS2345. This halts the production build step and prevents deployment.
+**Suggested fix**: Update the test call to pass a valid `CartInputItem` object containing `id`, `productId`, `variantId`, `title`, and `unitPriceCents`.
 
 ## Major
-
-### 🟠 Sliding frame cache update placed inside cache miss branch causes scroll stutter, `src/components/hero/hero-canvas-scrubber.tsx:99`
-**Problem**: In `drawFrame`, `cache.updateActiveWindow(index)` is only called inside the `else` block when an image is missing or incomplete. When a frame is already loaded, `updateActiveWindow` is skipped entirely.
-**Why it matters**: The `updateActiveWindow` method is the only mechanism that evicts out of range frames to keep memory bounded, and it also triggers speculative prefetching for upcoming frames. Because it only executes on a cache miss, speculative loading halts while scrolling through cached frames. Shoppers will encounter frame drops and stutter at window boundaries, and expired frames linger in memory longer than necessary.
-**Suggested fix**: Move `cache.updateActiveWindow(index)` outside the conditional check so that it executes whenever the active frame index updates, keeping speculative preloading and memory eviction continuous.
+### 🟠 Hardcoded fallback domain data and prices in bundle card, `src/components/catalog/bundle-card.tsx:143`
+**Problem**: The bundle card embeds hardcoded fallback JSX with three specific honey products (Raw Wildflower, Pure Acacia, Mountain Lavender) and fallback price numbers (8800 and 11400) if relations are not resolved.
+**Why it matters**: If a new tasting flight or bundle is added without pre populating `includedProducts` or variant pricing, the UI displays false product items and incorrect prices to customers rather than failing safely or displaying an honest empty state.
+**Suggested fix**: Remove the hardcoded varietal chips and prices. Derive displayed items strictly from `product.includedProducts`, and render an appropriate empty state or omit the section when no child products are linked.
 
 ## Minor
+### 🟡 Missing group utility class on product card container, `src/components/catalog/product-card.tsx:123`
+**Problem**: The product jar `Image` component specifies `group-hover:scale-105`, but neither the wrapping `article` nor the image container defines the Tailwind `group` class.
+**Why it matters**: The subtle zoom micro interaction on product jar hover does not trigger, leaving the visual presentation static during mouse hover.
+**Suggested fix**: Add `group` to the parent `article` or the immediate image container element so hover events propagate to the image.
 
-### 🟡 Extraction Story navigation anchor points to non existent element identifier, `src/components/layout/storefront-header.tsx:69`
-**Problem**: The navigation link uses `href="#harvest-story"`, but the hero section container defines `id="hero-scroll-track"`, and no element on the page carries `id="harvest-story"`.
-**Why it matters**: Clicking the Extraction Story link in the sticky editorial navigation bar does not scroll to the harvest sequence because the anchor target does not exist in the document.
-**Suggested fix**: Add `id="harvest-story"` to the hero section container in `StorefrontHeroSection`, or update the link in `StorefrontHeader` to match the existing element identifier.
+### 🟡 Filter updates purge non catalog query parameters from URL, `src/components/catalog/catalog-view.tsx:80`
+**Problem**: The `updateQueryParam` helper constructs a brand new `URLSearchParams()` object from scratch on every change instead of reading existing parameters from the current URL.
+**Why it matters**: If a shopper lands on `/catalog` with marketing campaign parameters such as UTM tags or referral tokens, clicking any category filter or sort option purges all tracking parameters from the URL.
+**Suggested fix**: Initialize `URLSearchParams` with `searchParams.toString()`, then update or delete only `category`, `sort`, and `inStock`.
 
-### 🟡 Native alert dialog used for checkout placeholder in cart drawer, `src/components/cart/cart-drawer.tsx:217`
-**Problem**: The Complete Reserve Order button executes a native browser `alert` call.
-**Why it matters**: Native alert dialogs are blocking, pause the JavaScript execution thread, clash with luxury editorial design, and can break headless automated testing or embedded web views.
-**Suggested fix**: Replace the native alert with a non blocking status notification, an accessible modal note, or a disabled button state with informative helper text until Slice 4 is implemented.
+### 🟡 Repetitive price computation in sort comparator loop, `src/lib/catalog/queries.ts:98`
+**Problem**: In `filterAndSortProducts`, the comparator functions for `price_asc` and `price_desc` invoke `getProductDisplayPrice` on every pair comparison inside the sorting loop.
+**Why it matters**: Calling helper functions that iterate over variant arrays on every comparison adds unnecessary CPU work and object allocations during sorting.
+**Suggested fix**: Precompute default prices or read `defaultVariant.priceCents` directly during sorting.
 
 ## Nits
-
-- ⚪ `src/components/hero/hero-canvas-scrubber.tsx:16`, `HeroCanvasScrubberProps` defines `posterUrl` but the component implementation never destructures or uses this prop.
-- ⚪ `src/components/ui/badge.tsx:5`, The new `size` prop supporting `sm`, `md`, and `lg` options was added without matching unit test assertions in `src/components/ui/__tests__/badge.test.tsx`.
-- ⚪ `src/components/layout/storefront-header.tsx:1`, `StorefrontHeader` and `StorefrontFooter` are tested through `page.test.tsx` but lack dedicated test files beside their source files.
+- ⚪ `src/components/catalog/bundle-card.tsx:105`, The badge text `3 x 125g Tasting Jars Included` is hardcoded and should be computed from the included items length.
+- ⚪ `src/components/catalog/product-card.tsx:48`, Reading `selectedVariant.priceCents` without optional chaining or fallback could throw a runtime exception if a product has an empty variants collection.
 
 ## Strengths
-
-- The 300vh full viewport canvas stage and 150 frame extraction sequence deliver an immersive luxury experience without distracting frame number badges, satisfying AC-1 and AC-4.
-- The `useScrollFrame` hook provides smooth 60fps dampening with passive scroll listeners, proper animation frame cancellation, and clean system reduced motion accommodations with an accessible manual range scrubber.
-- The end to end integration from variant selection in the buy box to optimistic cart counter updates in the header and automatic cart drawer opening is seamless and verified by both unit and Cypress browser tests.
+- Comprehensive accessibility semantics across all interactive surfaces, including `role="tablist"` on category filters, `role="switch"` on in stock toggles, `role="radiogroup"` on variant sizes, and `role="meter"` on sensory ratings.
+- Smooth zero dependency sensory drawer expansion built on native Tailwind CSS grid transitions (`grid-template-rows: 0fr` to `1fr`) with full support for `prefers-reduced-motion`.
+- Resilient URL search parameter normalization in `CatalogView` that silently cleans invalid categories or sort keys to safe defaults without runtime crashes.
+- Extensive test coverage with 209 passing Vitest unit and component tests plus Cypress end to end browser journeys.
 
 ## Test coverage
-
-The test coverage is solid and high signal, with 156 Vitest unit tests passing across 20 test files, plus a full Cypress browser test in `cypress/e2e/storefront-loop.cy.ts`. The test suite thoroughly validates canvas resolution scaling, device pixel ratio clamping, sliding frame eviction, scroll progress math, variant pricing switching, and cart store persistence. Minor test gaps include missing unit assertions for the new Badge size prop and the absence of co located unit test suites for layout header and footer components.
+Vitest test suites cover all newly created catalog components, query functions, pricing logic, and routing orchestrators. 209 unit tests pass across 28 test suites. The only test flaw is the type signature misuse in `src/components/layout/__tests__/storefront-header.test.tsx:56`, which was caught during TypeScript build compilation rather than Vitest execution.

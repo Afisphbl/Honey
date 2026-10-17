@@ -171,5 +171,28 @@ describe("HeroCanvasScrubber component (satisfies AC-1, AC-2, AC-3, AC-4)", () =
     expect(progressBar).toBeInTheDocument();
     expect(progressBar).toHaveStyle({ width: "0%" });
   });
+
+  it("renders teaser navigation links to catalog and featured reserve (AC-1)", () => {
+    const containerRef = {
+      current: document.createElement("div"),
+    };
+
+    render(
+      <HeroCanvasScrubber containerRef={containerRef} totalFrames={150} />
+    );
+
+    const exploreLink = screen.getByRole("link", {
+      name: /explore all reserves/i,
+    });
+    expect(exploreLink).toBeInTheDocument();
+    expect(exploreLink).toHaveAttribute("href", "/catalog");
+
+    const featuredLink = screen.getByRole("link", {
+      name: /featured reserve/i,
+    });
+    expect(featuredLink).toBeInTheDocument();
+    expect(featuredLink).toHaveAttribute("href", "#featured-reserve");
+  });
 });
+
 

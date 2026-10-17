@@ -1,9 +1,12 @@
 import { describe, it, expect } from "vitest";
 import {
+  filterAndSortProducts,
   getAllProducts,
+  getCategoryCounts,
   getFeaturedProduct,
   getProductById,
   getProductBySlug,
+  getProductDisplayPrice,
   getVariantById,
 } from "../queries";
 
@@ -119,4 +122,102 @@ describe("Catalog Queries (satisfies AC-1, AC-3)", () => {
       ).toBe(true);
     }
   });
+
+  it("resolves includedProducts relation on bundle records (satisfies AC-1, AC-7)", () => {
+    const bundle = getProductById("apiary-tasting-flight-bundle");
+    expect(bundle).not.toBeNull();
+    expect(bundle?.includedProducts).toBeDefined();
+    expect(bundle?.includedProducts?.length).toBe(3);
+    const titles = bundle?.includedProducts?.map((p) => p.title);
+    expect(titles).toContain("Raw Wildflower Reserve");
+    expect(titles).toContain("Pure Acacia Blossom");
+    expect(titles).toContain("Mountain Lavender Infusion");
+  });
+
+  it("calculates category counts correctly (satisfies AC-1, AC-2)", () => {
+    const counts = getCategoryCounts();
+    expect(counts.all).toBeGreaterThanOrEqual(6);
+    expect(counts.single_origin).toBeGreaterThanOrEqual(2);
+    expect(counts.infusion).toBeGreaterThanOrEqual(1);
+    expect(counts.seasonal_reserve).toBeGreaterThanOrEqual(1);
+    expect(counts.raw_comb).toBeGreaterThanOrEqual(1);
+    expect(counts.bundle).toBeGreaterThanOrEqual(1);
+  });
+
+  it("sorts products by price ascending and descending (satisfies AC-2)", () => {
+    const asc = getAllProducts({ sortBy: "price_asc" });
+    for (let i = 0; i < asc.length - 1; i++) {
+      const priceA = asc[i].variants.find((v) => v.isDefault)?.priceCents ?? 0;
+      const priceB = asc[i + 1].variants.find((v) => v.isDefault)?.priceCents ?? 0;
+      expect(priceA).toBeLessThanOrEqual(priceB);
+    }
+
+    const desc = getAllProducts({ sortBy: "price_desc" });
+    for (let i = 0; i < desc.length - 1; i++) {
+      const priceA = desc[i].variants.find((v) => v.isDefault)?.priceCents ?? 0;
+      const priceB = desc[i + 1].variants.find((v) => v.isDefault)?.priceCents ?? 0;
+      expect(priceA).toBeGreaterThanOrEqual(priceB);
+    }
+  });
+
+  it("sorts products by intensity (satisfies AC-2)", () => {
+    const byIntensity = getAllProducts({ sortBy: "intensity" });
+    for (let i = 0; i < byIntensity.length - 1; i++) {
+      expect(
+        byIntensity[i].tastingProfile.intensityScale
+      ).toBeGreaterThanOrEqual(byIntensity[i + 1].tastingProfile.intensityScale);
+    }
+  });
+
+  it("calculates product display prices correctly (satisfies AC-4)", () => {
+    const product = getProductById("raw-wildflower-reserve");
+    expect(product).not.toBeNull();
+    if (product) {
+      const prices = getProductDisplayPrice(product);
+      expect(prices.minPriceCents).toBe(3400);
+      expect(prices.maxPriceCents).toBe(5800);
+      expect(prices.defaultPriceCents).toBe(3400);
+      expect(prices.compareAtPriceCents).toBe(4000);
+    }
+  });
+
+  it("handles category 'all' by returning all products (satisfies AC-2)", () => {
+    const all = getAllProducts({ category: "all" });
+    const baseline = getAllProducts();
+    expect(all.length).toBe(baseline.length);
+  });
+
+  it("supports multi category filtering with categories array (satisfies AC-2)", () => {
+    const multi = getAllProducts({
+      categories: ["single_origin", "infusion"],
+    });
+    expect(multi.length).toBeGreaterThanOrEqual(3);
+    for (const item of multi) {
+      expect(["single_origin", "infusion"]).toContain(item.category);
+    }
+  });
+
+  it("returns empty array when filterAndSortProducts is given an empty list", () => {
+    const result = filterAndSortProducts([]);
+    expect(result).toEqual([]);
+  });
+
+  it("calculates category counts filtering by inStockOnly (satisfies AC-2)", () => {
+    const countsInStock = getCategoryCounts({ inStockOnly: true });
+    expect(countsInStock.all).toBeGreaterThan(0);
+    expect(
+      countsInStock.single_origin +
+        countsInStock.infusion +
+        countsInStock.seasonal_reserve +
+        countsInStock.raw_comb +
+        countsInStock.bundle
+    ).toBe(countsInStock.all);
+  });
+
+  it("sorts by featured placing featured products at the top (satisfies AC-2)", () => {
+    const sorted = getAllProducts({ sortBy: "featured" });
+    expect(sorted.length).toBeGreaterThan(0);
+    expect(sorted[0].isFeatured).toBe(true);
+  });
 });
+
