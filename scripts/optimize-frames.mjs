@@ -9,7 +9,7 @@ const ZIP_PATH = path.join(ROOT_DIR, "ezgif-15929baa46c6720a-png-split.zip");
 const TEMP_RAW_DIR = path.join(ROOT_DIR, "temp-raw-frames");
 const OUTPUT_DIR = path.join(ROOT_DIR, "public", "frames");
 const TOTAL_FRAMES = 150;
-const WEBP_QUALITY = 82;
+const WEBP_QUALITY = 90;
 
 async function ensureRawFrames() {
   if (existsSync(TEMP_RAW_DIR)) {
@@ -77,7 +77,7 @@ async function optimizeFrames() {
         }
 
         const buffer = await sharp(inputPath)
-          .webp({ quality: WEBP_QUALITY, effort: 4 })
+          .webp({ quality: WEBP_QUALITY, effort: 6 })
           .toBuffer();
 
         await fs.writeFile(outputPath, buffer);

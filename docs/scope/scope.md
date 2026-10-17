@@ -14,8 +14,8 @@ _These are recommendations to keep your build orderly, not requirements. Skip an
 | 1 | Stack & architecture | Foundation | done |
 | 2 | Coding standards & tooling | Foundation | planned |
 | 3 | Data model | Foundation | done |
-| 4 | Design system & UI foundation | Foundation | in-progress |
-| 5 | Core storefront loop & scroll hero | Slice 1 | planned |
+| 4 | Design system & UI foundation | Foundation | done |
+| 5 | Core storefront loop & scroll hero | Slice 1 | done |
 | 6 | Product catalog & tasting notes | Slice 2 | planned |
 | 7 | Brand heritage & apiary story | Slice 3 | planned |
 | 8 | Cart drawer & order completion | Slice 4 | planned |
@@ -69,16 +69,27 @@ Artisanal honey visual language, warm amber and gold tones, rich typography, flu
   - [x] Accessible Radix UI overlay primitives: Drawer, Dialog, and Tabs (AC-5, AC-6)
 - [x] Verify it: `/check verify design system & UI foundation`
 - [x] Test it: `/test design system & UI foundation`
-- [ ] Review it (fresh model): `/check review design system & UI foundation`
-- [ ] Document it: `/document design system & UI foundation`
+- [x] Review it (fresh model): `/check review design system & UI foundation`
+- [x] Document it: `/document design system & UI foundation`
 
 
 ## Slice 1: Core storefront loop & scroll hero
 
-### 5. Core storefront loop & scroll hero · needs a decision
+### 5. Core storefront loop & scroll hero
+spec [0004](../specs/0004-core-storefront-loop-scroll-hero/index.md) · code in `src/`
+
 Interactive canvas scrubber displaying the 150 frame animation sequence on scroll, connected to a featured honey jar with variant selection, add to cart action, and cart state count. This slice serves as the walking skeleton proving the full pipeline works end to end.
 **Done when:** visitor can scroll to scrub the 150 frames smoothly in a canvas, select a jar size, add to cart, and see the cart badge update.
-- [ ] Design it (spec): `/architect core storefront loop & scroll hero`
+- [x] Design it (spec): `/architect core storefront loop & scroll hero`
+- [x] Build it: `/develop core storefront loop & scroll hero`
+  - [x] Floating transparent storefront header with backdrop blur (AC-1)
+  - [x] Full screen canvas scrubber with smooth scrubbing and hidden counter numbers (AC-1, AC-3, AC-4)
+  - [x] Sequential featured buy box with variant selector and dynamic pricing (AC-5)
+  - [x] Add to cart action and automatic cart drawer opening (AC-6)
+- [x] Verify it: `/check verify core storefront loop & scroll hero`
+- [x] Test it: `/test core storefront loop & scroll hero`
+- [x] Review it (fresh model): `/check review core storefront loop & scroll hero`
+- [x] Document it: `/document core storefront loop & scroll hero`
 
 ## Slice 2: Product catalog & tasting notes
 
