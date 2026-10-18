@@ -7,6 +7,9 @@ import {
   HarvestSeasonSchema,
   HoneyAvailabilityStatusSchema,
   OrderSubmissionSchema,
+  OrderSummarySchema,
+  PaymentMethodSchema,
+  PaymentStatusSchema,
   PledgeCategorySchema,
   PurityStandardSchema,
   ProductSchema,
@@ -215,6 +218,200 @@ describe("Catalog Schema and Invariants Validation (satisfies AC-1, AC-2, AC-3)"
 
       const result = OrderSubmissionSchema.safeParse(excessivePayload);
       expect(result.success).toBe(false);
+    });
+
+    it("accepts valid gifting options, delivery notes, and payment methods (covers AC-4, AC-6)", () => {
+      const validGiftingPayload = {
+        customer: {
+          name: "Julian Thorne",
+          email: "julian@catskillapiary.org",
+        },
+        shippingAddress: {
+          fullName: "Julian Thorne",
+          email: "julian@catskillapiary.org",
+          line1: "88 Hive Ridge Lane",
+          city: "Woodstock",
+          state: "NY",
+          postalCode: "12498",
+        },
+        items: [
+          {
+            productId: "raw-wildflower-reserve",
+            variantId: "raw-wildflower-reserve-250g",
+            quantity: 2,
+          },
+        ],
+        giftPackaging: true,
+        giftNote: "Warm harvest wishes from the Catskills.",
+        deliveryInstructions: "Leave parcel in shaded porch box.",
+        paymentMethod: "simulated_card",
+        cardLast4: "4242",
+        expectedSubtotalCents: 6800,
+      };
+
+      const result = OrderSubmissionSchema.safeParse(validGiftingPayload);
+      expect(result.success).toBe(true);
+      if (result.success) {
+        expect(result.data.giftPackaging).toBe(true);
+        expect(result.data.giftNote).toBe("Warm harvest wishes from the Catskills.");
+        expect(result.data.deliveryInstructions).toBe("Leave parcel in shaded porch box.");
+        expect(result.data.paymentMethod).toBe("simulated_card");
+        expect(result.data.cardLast4).toBe("4242");
+      }
+    });
+
+    it("rejects gift note exceeding 150 characters (covers AC-4)", () => {
+      const longNotePayload = {
+        customer: {
+          name: "Julian Thorne",
+          email: "julian@catskillapiary.org",
+        },
+        shippingAddress: {
+          fullName: "Julian Thorne",
+          email: "julian@catskillapiary.org",
+          line1: "88 Hive Ridge Lane",
+          city: "Woodstock",
+          state: "NY",
+          postalCode: "12498",
+        },
+        items: [
+          {
+            productId: "raw-wildflower-reserve",
+            variantId: "raw-wildflower-reserve-250g",
+            quantity: 1,
+          },
+        ],
+        giftNote: "A".repeat(151),
+      };
+
+      const result = OrderSubmissionSchema.safeParse(longNotePayload);
+      expect(result.success).toBe(false);
+    });
+
+    it("rejects delivery instructions exceeding 200 characters (covers AC-4, AC-6)", () => {
+      const longInstructionsPayload = {
+        customer: {
+          name: "Julian Thorne",
+          email: "julian@catskillapiary.org",
+        },
+        shippingAddress: {
+          fullName: "Julian Thorne",
+          email: "julian@catskillapiary.org",
+          line1: "88 Hive Ridge Lane",
+          city: "Woodstock",
+          state: "NY",
+          postalCode: "12498",
+        },
+        items: [
+          {
+            productId: "raw-wildflower-reserve",
+            variantId: "raw-wildflower-reserve-250g",
+            quantity: 1,
+          },
+        ],
+        deliveryInstructions: "D".repeat(201),
+      };
+
+      const result = OrderSubmissionSchema.safeParse(longInstructionsPayload);
+      expect(result.success).toBe(false);
+    });
+
+    it("rejects card last 4 that is not exactly 4 digits (covers AC-6)", () => {
+      const invalidCardLast4Payload = {
+        customer: {
+          name: "Julian Thorne",
+          email: "julian@catskillapiary.org",
+        },
+        shippingAddress: {
+          fullName: "Julian Thorne",
+          email: "julian@catskillapiary.org",
+          line1: "88 Hive Ridge Lane",
+          city: "Woodstock",
+          state: "NY",
+          postalCode: "12498",
+        },
+        items: [
+          {
+            productId: "raw-wildflower-reserve",
+            variantId: "raw-wildflower-reserve-250g",
+            quantity: 1,
+          },
+        ],
+        cardLast4: "424", // only 3 digits
+      };
+
+      expect(OrderSubmissionSchema.safeParse(invalidCardLast4Payload).success).toBe(false);
+
+      const letterCardLast4Payload = {
+        ...invalidCardLast4Payload,
+        cardLast4: "424A", // contains non-digit
+      };
+
+      expect(OrderSubmissionSchema.safeParse(letterCardLast4Payload).success).toBe(false);
+    });
+  });
+
+  describe("Payment and Order Summary Schemas (covers AC-6, AC-7, AC-8)", () => {
+    it("validates payment methods and statuses against PaymentMethodSchema and PaymentStatusSchema (covers AC-6)", () => {
+      expect(PaymentMethodSchema.safeParse("simulated_card").success).toBe(true);
+      expect(PaymentMethodSchema.safeParse("apiary_reserve_credit").success).toBe(true);
+      expect(PaymentMethodSchema.safeParse("unsupported_method").success).toBe(false);
+
+      expect(PaymentStatusSchema.safeParse("paid").success).toBe(true);
+      expect(PaymentStatusSchema.safeParse("pending").success).toBe(true);
+      expect(PaymentStatusSchema.safeParse("failed").success).toBe(false);
+    });
+
+    it("validates complete order summary structure (covers AC-8)", () => {
+      const summary = {
+        id: "ORD-1760000000000-TESTKEY",
+        orderNumber: "HNY-54321",
+        createdAt: "2026-10-18T12:00:00.000Z",
+        status: "confirmed" as const,
+        customer: {
+          name: "Julian Thorne",
+          email: "julian@catskillapiary.org",
+        },
+        shippingAddress: {
+          fullName: "Julian Thorne",
+          email: "julian@catskillapiary.org",
+          line1: "88 Hive Ridge Lane",
+          city: "Woodstock",
+          state: "NY",
+          postalCode: "12498",
+          country: "US",
+        },
+        items: [
+          {
+            id: "raw-wildflower-reserve-250g",
+            productId: "raw-wildflower-reserve",
+            variantId: "raw-wildflower-reserve-250g",
+            title: "Raw Wildflower Reserve",
+            variantTitle: "250g Artisanal Tasting Jar",
+            unitPriceCents: 3400,
+            weightOz: 8.8,
+            quantity: 2,
+            addedAt: "2026-10-18T12:00:00.000Z",
+          },
+        ],
+        giftPackaging: true,
+        giftNote: "With warmest seasonal harvest wishes.",
+        deliveryInstructions: "Leave parcel in shaded porch box.",
+        paymentMethod: "simulated_card" as const,
+        cardLast4: "4242",
+        paymentStatus: "paid" as const,
+        subtotalCents: 6800,
+        shippingFeeCents: 0,
+        totalCents: 6800,
+      };
+
+      const result = OrderSummarySchema.safeParse(summary);
+      expect(result.success).toBe(true);
+      if (result.success) {
+        expect(result.data.orderNumber).toBe("HNY-54321");
+        expect(result.data.paymentStatus).toBe("paid");
+        expect(result.data.giftPackaging).toBe(true);
+      }
     });
   });
 

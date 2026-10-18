@@ -176,6 +176,9 @@ export const OrderSubmissionItemSchema = z.object({
   quantity: z.number().int().min(1, "Quantity must be at least 1").max(10, "Quantity cannot exceed 10"),
 });
 
+export const PaymentMethodSchema = z.enum(["simulated_card", "apiary_reserve_credit"]);
+export const PaymentStatusSchema = z.enum(["paid", "pending"]);
+
 export const OrderSubmissionSchema = z.object({
   customer: z.object({
     name: z.string().trim().min(2, "Customer name must be at least 2 characters").max(100),
@@ -186,6 +189,11 @@ export const OrderSubmissionSchema = z.object({
     .array(OrderSubmissionItemSchema)
     .min(1, "Order must contain at least one item")
     .max(30, "Order cannot exceed 30 items total"),
+  giftPackaging: z.boolean().default(false).optional(),
+  giftNote: z.string().trim().max(150, "Gift note cannot exceed 150 characters").optional(),
+  deliveryInstructions: z.string().trim().max(200, "Delivery instructions cannot exceed 200 characters").optional(),
+  paymentMethod: PaymentMethodSchema.default("simulated_card").optional(),
+  cardLast4: z.string().regex(/^\d{4}$/, "Card last 4 must be 4 digits").optional(),
   expectedSubtotalCents: z.number().int().nonnegative().optional(),
 });
 
@@ -198,6 +206,12 @@ export const OrderSummarySchema = z.object({
   }),
   shippingAddress: ShippingAddressSchema,
   items: z.array(CartItemSchema),
+  giftPackaging: z.boolean().optional(),
+  giftNote: z.string().optional(),
+  deliveryInstructions: z.string().optional(),
+  paymentMethod: PaymentMethodSchema.optional(),
+  cardLast4: z.string().optional(),
+  paymentStatus: PaymentStatusSchema.optional(),
   subtotalCents: z.number().int().nonnegative(),
   shippingFeeCents: z.number().int().nonnegative(),
   totalCents: z.number().int().nonnegative(),

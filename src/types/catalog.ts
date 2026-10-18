@@ -139,6 +139,11 @@ export interface OrderSubmission {
   };
   shippingAddress: ShippingAddress;
   items: OrderSubmissionItem[];
+  giftPackaging?: boolean;
+  giftNote?: string;
+  deliveryInstructions?: string;
+  paymentMethod?: "simulated_card" | "apiary_reserve_credit";
+  cardLast4?: string;
   expectedSubtotalCents?: number;
 }
 
@@ -151,6 +156,12 @@ export interface OrderSummary {
   };
   shippingAddress: ShippingAddress;
   items: CartItem[];
+  giftPackaging?: boolean;
+  giftNote?: string;
+  deliveryInstructions?: string;
+  paymentMethod?: "simulated_card" | "apiary_reserve_credit";
+  cardLast4?: string;
+  paymentStatus?: "paid" | "pending";
   subtotalCents: number;
   shippingFeeCents: number;
   totalCents: number;

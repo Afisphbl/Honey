@@ -1,6 +1,7 @@
 import { describe, it, expect, vi, beforeEach } from "vitest";
 import { render, screen, fireEvent } from "@testing-library/react";
 import Home from "../page";
+import { CartDrawer } from "@/components/cart/cart-drawer";
 import { useCartStore } from "@/lib/store/cart-store";
 
 describe("Home Page Component (covers AC-1, AC-2, AC-4, AC-5, AC-6)", () => {
@@ -84,7 +85,12 @@ describe("Home Page Component (covers AC-1, AC-2, AC-4, AC-5, AC-6)", () => {
   });
 
   it("executes end-to-end add to cart loop and opens drawer (AC-5, AC-6)", () => {
-    render(<Home />);
+    render(
+      <>
+        <Home />
+        <CartDrawer />
+      </>
+    );
 
     // Click Add to Cart button in the featured buy box
     const addToCartButton = screen.getByRole("button", {

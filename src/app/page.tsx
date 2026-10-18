@@ -4,7 +4,6 @@ import { StorefrontHeader } from "@/components/layout/storefront-header";
 import { StorefrontHeroSection } from "@/components/hero/storefront-hero-section";
 import { FeaturedBuyBox } from "@/components/hero/featured-buy-box";
 import { StorefrontFooter } from "@/components/layout/storefront-footer";
-import { CartDrawer } from "@/components/cart/cart-drawer";
 import { Badge } from "@/components/ui/badge";
 import { ShieldCheck, Droplets, Sparkles, Compass } from "lucide-react";
 
@@ -199,9 +198,6 @@ export default function Home() {
 
       {/* Editorial Footer */}
       <StorefrontFooter />
-
-      {/* Slide Over Cart Drawer */}
-      <CartDrawer />
     </div>
   );
 }

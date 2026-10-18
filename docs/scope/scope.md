@@ -18,7 +18,7 @@ _These are recommendations to keep your build orderly, not requirements. Skip an
 | 5 | Core storefront loop & scroll hero | Slice 1 | done |
 | 6 | Product catalog & tasting notes | Slice 2 | done |
 | 7 | Brand heritage & apiary story | Slice 3 | done |
-| 8 | Cart drawer & order completion | Slice 4 | planned |
+| 8 | Cart drawer & order completion | Slice 4 | done |
 
 ## Foundations
 
@@ -131,13 +131,26 @@ Narrative journey highlighting sustainable beekeeping, ethical hive management, 
 
 ## Slice 4: Cart drawer & order completion
 
-### 8. Cart drawer & order completion · needs a decision
+### 8. Cart drawer & order completion
+spec [0007](../specs/0007-cart-drawer-and-order-completion/index.md) · code in `src/components/cart/`
+
 Slide over cart drawer with line item adjustments, delivery notes, shipping cost estimate, customer order form, and checkout receipt summary.
 **Done when:** customer can adjust quantities in the cart drawer, enter shipping details, submit an order, and see a confirmed receipt.
-- [ ] Design it (spec): `/architect cart drawer & order completion`
+- [x] Design it (spec): `/architect cart drawer & order completion`
+- [x] Build it: `/develop cart drawer & order completion`
+  - [x] Extended schemas, types, and global layout mounting (AC-1, AC-4, AC-7)
+  - [x] Multi phase in drawer state machine and back navigation (AC-1, AC-5)
+  - [x] Customer shipping form with real time Zod validation and simulated payment (AC-4, AC-5, AC-6)
+  - [x] Server price revalidation route and order submission handling (AC-7)
+  - [x] Confirmed order receipt, print styling, and local storage past orders view (AC-8, AC-9)
+- [x] Verify it: `/check verify cart drawer & order completion`
+- [x] Test it: `/test cart drawer & order completion`
+- [x] Review it (fresh model): `/check review cart drawer & order completion`
+- [x] Document it: `/document cart drawer & order completion`
 
 ## Deferred
 Out of scope for the current build pass, kept so the plan stays honest.
+- **Automated order confirmation emails**: transactional customer email dispatch upon receipt creation · needs a decision
 - **Wholesale inquiry portal**: bulk order pricing calculator and retailer application form · needs a decision
 - **Customer reviews & ratings**: verified buyer reviews with star ratings and photos · needs a decision
 - **Honey club subscription**: recurring seasonal harvest delivery service · needs a decision · GA
