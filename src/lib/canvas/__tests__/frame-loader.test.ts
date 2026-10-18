@@ -153,4 +153,120 @@ describe("Canvas safeguards and WindowedFrameCache (covers AC-6)", () => {
     expect(clearRect).not.toHaveBeenCalled();
     expect(drawImage).not.toHaveBeenCalled();
   });
+
+  it("enables high quality image smoothing when supported on canvas context (AC-3)", () => {
+    const clearRect = vi.fn();
+    const drawImage = vi.fn();
+    const ctx = {
+      imageSmoothingEnabled: false,
+      imageSmoothingQuality: "low",
+      clearRect,
+      drawImage,
+    } as unknown as CanvasRenderingContext2D;
+
+    const img = {
+      naturalWidth: 800,
+      naturalHeight: 600,
+    } as unknown as HTMLImageElement;
+
+    drawImageCover(ctx, img, 800, 600);
+
+    expect(ctx.imageSmoothingEnabled).toBe(true);
+    expect(ctx.imageSmoothingQuality).toBe("high");
+    expect(drawImage).toHaveBeenCalledTimes(1);
+  });
+
+  it("loads image frame and caches it in memory (AC-3)", async () => {
+    const originalImage = globalThis.Image;
+    class MockImage {
+      onload: (() => void) | null = null;
+      onerror: ((err: unknown) => void) | null = null;
+      private _src = "";
+      public decoding = "async";
+      get src() {
+        return this._src;
+      }
+      set src(value: string) {
+        this._src = value;
+        setTimeout(() => {
+          if (this.onload) this.onload();
+        }, 0);
+      }
+    }
+    globalThis.Image = MockImage as unknown as typeof Image;
+
+    try {
+      const cache = new WindowedFrameCache(150, 8, "/frames");
+      const img = await cache.loadFrame(10);
+      expect(img).toBeDefined();
+      expect(cache.getLoadedFrame(10)).toBe(img);
+      expect(cache.getCacheSize()).toBe(1);
+
+      const secondCall = await cache.loadFrame(10);
+      expect(secondCall).toBe(img);
+    } finally {
+      globalThis.Image = originalImage;
+    }
+  });
+
+  it("evicts frames outside sliding window when updating active frame (AC-3)", async () => {
+    const originalImage = globalThis.Image;
+    class MockImage {
+      onload: (() => void) | null = null;
+      onerror: ((err: unknown) => void) | null = null;
+      private _src = "";
+      public decoding = "async";
+      get src() {
+        return this._src;
+      }
+      set src(value: string) {
+        this._src = value;
+        setTimeout(() => {
+          if (this.onload) this.onload();
+        }, 0);
+      }
+    }
+    globalThis.Image = MockImage as unknown as typeof Image;
+
+    try {
+      const cache = new WindowedFrameCache(150, 4, "/frames");
+      await cache.loadFrame(10);
+      expect(cache.getLoadedFrame(10)).toBeDefined();
+
+      cache.updateActiveWindow(50);
+      expect(cache.getLoadedFrame(10)).toBeUndefined();
+    } finally {
+      globalThis.Image = originalImage;
+    }
+  });
+
+  it("cleans up pending loads when image loading fails (AC-3)", async () => {
+    const originalImage = globalThis.Image;
+    class ErrorImage {
+      onload: (() => void) | null = null;
+      onerror: ((err: unknown) => void) | null = null;
+      private _src = "";
+      public decoding = "async";
+      get src() {
+        return this._src;
+      }
+      set src(value: string) {
+        this._src = value;
+        setTimeout(() => {
+          if (this.onerror) this.onerror(new Event("error"));
+        }, 0);
+      }
+    }
+    globalThis.Image = ErrorImage as unknown as typeof Image;
+
+    try {
+      const cache = new WindowedFrameCache(150, 4, "/frames");
+      await expect(cache.loadFrame(12)).rejects.toThrow(/Failed to load frame 12/);
+      expect(cache.getLoadedFrame(12)).toBeUndefined();
+      expect(cache.getCacheSize()).toBe(0);
+    } finally {
+      globalThis.Image = originalImage;
+    }
+  });
 });
+

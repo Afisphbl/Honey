@@ -118,3 +118,5 @@ export function formatCurrencyCents(cents: number): string {
     currency: "USD",
   }).format(dollars);
 }
+
+export const formatCentsToDollars = formatCurrencyCents;

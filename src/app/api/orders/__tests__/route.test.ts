@@ -327,4 +327,91 @@ describe("POST /api/orders Route Handler (satisfies AC-2, AC-6)", () => {
     const data = await response.json();
     expect(data.success).toBe(false);
   });
+
+  it("processes order with custom gifting, delivery notes, and apiary reserve credit payment (covers AC-4, AC-6, AC-7)", async () => {
+    const giftingPayload = {
+      customer: {
+        name: "Julian Thorne",
+        email: "julian@catskillapiary.org",
+      },
+      shippingAddress: {
+        fullName: "Julian Thorne",
+        email: "julian@catskillapiary.org",
+        line1: "88 Hive Ridge Lane",
+        city: "Woodstock",
+        state: "NY",
+        postalCode: "12498",
+        country: "US",
+      },
+      items: [
+        {
+          productId: "raw-wildflower-reserve",
+          variantId: "raw-wildflower-reserve-250g",
+          quantity: 2,
+        },
+      ],
+      giftPackaging: true,
+      giftNote: "Celebrating the autumn harvest.",
+      deliveryInstructions: "Leave parcel in shaded porch box.",
+      paymentMethod: "apiary_reserve_credit",
+      expectedSubtotalCents: 6800,
+    };
+
+    const request = new Request("http://localhost:3000/api/orders", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(giftingPayload),
+    });
+
+    const response = await POST(request);
+    expect(response.status).toBe(201);
+
+    const data = await response.json();
+    expect(data.success).toBe(true);
+    expect(data.order.giftPackaging).toBe(true);
+    expect(data.order.giftNote).toBe("Celebrating the autumn harvest.");
+    expect(data.order.deliveryInstructions).toBe("Leave parcel in shaded porch box.");
+    expect(data.order.paymentMethod).toBe("apiary_reserve_credit");
+    expect(data.order.paymentStatus).toBe("paid");
+  });
+
+  it("returns HTTP 400 when gift note exceeds 150 characters (covers AC-4, AC-6)", async () => {
+    const invalidGiftPayload = {
+      customer: {
+        name: "Julian Thorne",
+        email: "julian@catskillapiary.org",
+      },
+      shippingAddress: {
+        fullName: "Julian Thorne",
+        email: "julian@catskillapiary.org",
+        line1: "88 Hive Ridge Lane",
+        city: "Woodstock",
+        state: "NY",
+        postalCode: "12498",
+        country: "US",
+      },
+      items: [
+        {
+          productId: "raw-wildflower-reserve",
+          variantId: "raw-wildflower-reserve-250g",
+          quantity: 1,
+        },
+      ],
+      giftNote: "N".repeat(151),
+    };
+
+    const request = new Request("http://localhost:3000/api/orders", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(invalidGiftPayload),
+    });
+
+    const response = await POST(request);
+    expect(response.status).toBe(400);
+
+    const data = await response.json();
+    expect(data.success).toBe(false);
+    expect(data.details).toBeDefined();
+  });
 });
+

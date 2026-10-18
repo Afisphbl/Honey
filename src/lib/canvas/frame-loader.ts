@@ -152,12 +152,24 @@ export function drawImageCover(
 
   if (imgRatio > canvasRatio) {
     renderWidth = canvasHeight * imgRatio;
+    renderHeight = canvasHeight;
     offsetX = (canvasWidth - renderWidth) / 2;
+    offsetY = 0;
   } else {
+    renderWidth = canvasWidth;
     renderHeight = canvasWidth / imgRatio;
     offsetY = (canvasHeight - renderHeight) / 2;
+  }
+
+  if ("imageSmoothingEnabled" in ctx) {
+    ctx.imageSmoothingEnabled = true;
+  }
+  if ("imageSmoothingQuality" in ctx) {
+    ctx.imageSmoothingQuality = "high";
   }
 
   ctx.clearRect(0, 0, canvasWidth, canvasHeight);
   ctx.drawImage(img, offsetX, offsetY, renderWidth, renderHeight);
 }
+
+

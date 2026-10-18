@@ -9,6 +9,7 @@ This area powers the interactive hero sequence for the Honey storefront. It load
 | File | Owns |
 |---|---|
 | `src/lib/canvas/frame-loader.ts` | Sliding window cache, device pixel ratio clamping, and reduced motion detection |
+| `src/lib/canvas/use-scroll-frame.ts` | Scroll progress tracking, lerp dampening, and frame synchronization hook |
 | `src/lib/canvas/__tests__/frame-loader.test.ts` | Unit tests for cache eviction, device pixel ratio, and bounds |
 | `src/lib/canvas/__tests__/manifest.test.ts` | Validation tests for `public/frames/manifest.json` metadata |
 | `public/frames/manifest.json` | Total frame counts, dimensions, keyframe indices, and poster path |
@@ -36,5 +37,6 @@ npm test src/lib/canvas
 ## Related specs
 
 - [0001 Stack and Architecture](docs/specs/0001-stack-and-architecture/index.md) (covers AC-6 memory safeguards and canvas requirements)
+- [0004 Core Storefront Loop and Scroll Hero](docs/specs/0004-core-storefront-loop-scroll-hero/index.md) (covers full viewport hero stage and scroll scrubbing loop)
 
 _Drafted by /audit from the repo, worth a quick human pass. Edit freely: once a line stops matching this draft, later runs treat it as curated and will flag rather than overwrite it._

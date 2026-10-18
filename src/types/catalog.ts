@@ -91,6 +91,7 @@ export interface ProductWithRelations extends Product {
   origin: ApiaryOrigin;
   tastingProfile: TastingProfile;
   variants: ProductVariant[];
+  includedProducts?: Product[];
 }
 
 export interface LegacyCartVariant {
@@ -138,6 +139,11 @@ export interface OrderSubmission {
   };
   shippingAddress: ShippingAddress;
   items: OrderSubmissionItem[];
+  giftPackaging?: boolean;
+  giftNote?: string;
+  deliveryInstructions?: string;
+  paymentMethod?: "simulated_card" | "apiary_reserve_credit";
+  cardLast4?: string;
   expectedSubtotalCents?: number;
 }
 
@@ -150,6 +156,12 @@ export interface OrderSummary {
   };
   shippingAddress: ShippingAddress;
   items: CartItem[];
+  giftPackaging?: boolean;
+  giftNote?: string;
+  deliveryInstructions?: string;
+  paymentMethod?: "simulated_card" | "apiary_reserve_credit";
+  cardLast4?: string;
+  paymentStatus?: "paid" | "pending";
   subtotalCents: number;
   shippingFeeCents: number;
   totalCents: number;
@@ -161,4 +173,54 @@ export interface OrderTotals {
   subtotalCents: number;
   shippingFeeCents: number;
   totalCents: number;
+}
+
+export type HarvestSeason = "spring" | "summer" | "autumn" | "winter";
+
+export type HoneyAvailabilityStatus =
+  | "harvesting"
+  | "aging"
+  | "reserve"
+  | "dormant";
+
+export interface SeasonalCyclePhase {
+  id: string;
+  season: HarvestSeason;
+  title: string;
+  timeframeMonths: string;
+  apicultureActivity: string;
+  activeFlora: string[];
+  honeyAvailability: HoneyAvailabilityStatus;
+  featuredProductIds?: string[];
+  storyExcerpt: string;
+}
+
+export interface PurityStandard {
+  id: string;
+  name: string;
+  verificationMetric: string;
+  testingMethod: string;
+  issuingAuthority: string;
+  thresholdRequirement: string;
+  description: string;
+  badgeIcon: string;
+}
+
+export type PledgeCategory =
+  | "hive_welfare"
+  | "raw_purity"
+  | "terroir_conservation"
+  | "fair_trade";
+
+export interface BeekeepingPledge {
+  id: string;
+  title: string;
+  category: PledgeCategory;
+  statement: string;
+  details: string;
+  badgeIcon: string;
+}
+
+export interface ApiaryOriginDetail extends ApiaryOrigin {
+  products: Product[];
 }

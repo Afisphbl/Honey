@@ -14,11 +14,11 @@ _These are recommendations to keep your build orderly, not requirements. Skip an
 | 1 | Stack & architecture | Foundation | done |
 | 2 | Coding standards & tooling | Foundation | planned |
 | 3 | Data model | Foundation | done |
-| 4 | Design system & UI foundation | Foundation | in-progress |
-| 5 | Core storefront loop & scroll hero | Slice 1 | planned |
-| 6 | Product catalog & tasting notes | Slice 2 | planned |
-| 7 | Brand heritage & apiary story | Slice 3 | planned |
-| 8 | Cart drawer & order completion | Slice 4 | planned |
+| 4 | Design system & UI foundation | Foundation | done |
+| 5 | Core storefront loop & scroll hero | Slice 1 | done |
+| 6 | Product catalog & tasting notes | Slice 2 | done |
+| 7 | Brand heritage & apiary story | Slice 3 | done |
+| 8 | Cart drawer & order completion | Slice 4 | done |
 
 ## Foundations
 
@@ -69,44 +69,93 @@ Artisanal honey visual language, warm amber and gold tones, rich typography, flu
   - [x] Accessible Radix UI overlay primitives: Drawer, Dialog, and Tabs (AC-5, AC-6)
 - [x] Verify it: `/check verify design system & UI foundation`
 - [x] Test it: `/test design system & UI foundation`
-- [ ] Review it (fresh model): `/check review design system & UI foundation`
-- [ ] Document it: `/document design system & UI foundation`
+- [x] Review it (fresh model): `/check review design system & UI foundation`
+- [x] Document it: `/document design system & UI foundation`
 
 
 ## Slice 1: Core storefront loop & scroll hero
 
-### 5. Core storefront loop & scroll hero · needs a decision
+### 5. Core storefront loop & scroll hero
+spec [0004](../specs/0004-core-storefront-loop-scroll-hero/index.md) · code in `src/`
+
 Interactive canvas scrubber displaying the 150 frame animation sequence on scroll, connected to a featured honey jar with variant selection, add to cart action, and cart state count. This slice serves as the walking skeleton proving the full pipeline works end to end.
 **Done when:** visitor can scroll to scrub the 150 frames smoothly in a canvas, select a jar size, add to cart, and see the cart badge update.
-- [ ] Design it (spec): `/architect core storefront loop & scroll hero`
+- [x] Design it (spec): `/architect core storefront loop & scroll hero`
+- [x] Build it: `/develop core storefront loop & scroll hero`
+  - [x] Floating transparent storefront header with backdrop blur (AC-1)
+  - [x] Full screen canvas scrubber with smooth scrubbing and hidden counter numbers (AC-1, AC-3, AC-4)
+  - [x] Sequential featured buy box with variant selector and dynamic pricing (AC-5)
+  - [x] Add to cart action and automatic cart drawer opening (AC-6)
+- [x] Verify it: `/check verify core storefront loop & scroll hero`
+- [x] Test it: `/test core storefront loop & scroll hero`
+- [x] Review it (fresh model): `/check review core storefront loop & scroll hero`
+- [x] Document it: `/document core storefront loop & scroll hero`
 
 ## Slice 2: Product catalog & tasting notes
 
-### 6. Product catalog & tasting notes · needs a decision
+### 6. Product catalog & tasting notes
+spec [0005](../specs/0005-product-catalog-and-tasting-notes/index.md) · code in `src/app/catalog/` and `src/components/catalog/`
+
 Browse premium honey varieties (Raw Wildflower, Acacia, Lavender, Comb honey) with tasting profiles, harvest origins, and floral sources.
 **Done when:** visitor can filter varieties, view tasting notes, inspect floral sources, and choose between single jars or bundles.
-- [ ] Design it (spec): `/architect product catalog & tasting notes`
+- [x] Design it (spec): `/architect product catalog & tasting notes`
+- [x] Build it: `/develop product catalog & tasting notes`
+  - [x] Query helpers and relation resolution for multi category and bundle previews (AC-1, AC-2, AC-7)
+  - [x] Tactile sticky category filter bar with URL search param sync and empty state (AC-2, AC-3, AC-8)
+  - [x] Variety product cards with variant weight selectors and quick cart drawer action (AC-4, AC-7)
+  - [x] Accessible tasting notes drawer with zero dependency CSS grid viscous transition (AC-5, AC-6)
+  - [x] Dedicated `/catalog` page route with editorial header and storefront navigation link (AC-1, AC-3)
+- [x] Verify it: `/check verify product catalog & tasting notes`
+- [x] Test it: `/test product catalog & tasting notes`
+- [x] Review it (fresh model): `/check review product catalog & tasting notes`
+- [x] Document it: `/document product catalog & tasting notes`
 
 ## Slice 3: Brand heritage & apiary story
 
-### 7. Brand heritage & apiary story · needs a decision
+### 7. Brand heritage & apiary story
+spec [0006](../specs/0006-brand-heritage-and-apiary-story/index.md) · code in `src/app/about/` and `src/components/about/`
+
 Narrative journey highlighting sustainable beekeeping, ethical hive management, raw extraction purity badges, and seasonal harvest timeline.
 **Done when:** visitor can read the harvest timeline, review purity test verification badges, and explore the apiary locations.
-- [ ] Design it (spec): `/architect brand heritage & apiary story`
+- [x] Design it (spec): `/architect brand heritage & apiary story`
+- [x] Build it: `/develop brand heritage & apiary story`
+  - [x] Domain schemas, types, and artisanal seed records for seasons, purity badges, and pledges (AC-2, AC-3, AC-4, AC-5)
+  - [x] Pure catalog query helpers and origin detail relation resolvers (AC-2, AC-3, AC-4, AC-5)
+  - [x] Interactive Apiary Terroir Atlas with origin tabs, elevation markers, and URL parameter sync (AC-2, AC-6, AC-7, AC-8)
+  - [x] Interactive Seasonal Harvest Cycle with bloom notes and honey availability badges (AC-3, AC-6, AC-8)
+  - [x] Laboratory purity verification grid, ethical beekeeping pledges, and dedicated `/about` page route (AC-1, AC-4, AC-5)
+- [x] Verify it: `/check verify brand heritage & apiary story`
+- [x] Test it: `/test brand heritage & apiary story`
+- [x] Review it (fresh model): `/check review brand heritage & apiary story`
+- [x] Document it: `/document brand heritage & apiary story`
 
 ## Slice 4: Cart drawer & order completion
 
-### 8. Cart drawer & order completion · needs a decision
+### 8. Cart drawer & order completion
+spec [0007](../specs/0007-cart-drawer-and-order-completion/index.md) · code in `src/components/cart/`
+
 Slide over cart drawer with line item adjustments, delivery notes, shipping cost estimate, customer order form, and checkout receipt summary.
 **Done when:** customer can adjust quantities in the cart drawer, enter shipping details, submit an order, and see a confirmed receipt.
-- [ ] Design it (spec): `/architect cart drawer & order completion`
+- [x] Design it (spec): `/architect cart drawer & order completion`
+- [x] Build it: `/develop cart drawer & order completion`
+  - [x] Extended schemas, types, and global layout mounting (AC-1, AC-4, AC-7)
+  - [x] Multi phase in drawer state machine and back navigation (AC-1, AC-5)
+  - [x] Customer shipping form with real time Zod validation and simulated payment (AC-4, AC-5, AC-6)
+  - [x] Server price revalidation route and order submission handling (AC-7)
+  - [x] Confirmed order receipt, print styling, and local storage past orders view (AC-8, AC-9)
+- [x] Verify it: `/check verify cart drawer & order completion`
+- [x] Test it: `/test cart drawer & order completion`
+- [x] Review it (fresh model): `/check review cart drawer & order completion`
+- [x] Document it: `/document cart drawer & order completion`
 
 ## Deferred
 Out of scope for the current build pass, kept so the plan stays honest.
+- **Automated order confirmation emails**: transactional customer email dispatch upon receipt creation · needs a decision
 - **Wholesale inquiry portal**: bulk order pricing calculator and retailer application form · needs a decision
 - **Customer reviews & ratings**: verified buyer reviews with star ratings and photos · needs a decision
 - **Honey club subscription**: recurring seasonal harvest delivery service · needs a decision · GA
 - **Internationalization**: multi currency display and translation support · needs a decision
+- **Dedicated product detail pages**: individual harvest narrative pages at `/catalog/[slug]` from spec 0005 · needs a decision
 
 ## References
 

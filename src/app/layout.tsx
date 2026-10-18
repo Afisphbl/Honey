@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Cormorant_Garamond, Plus_Jakarta_Sans } from "next/font/google";
+import { CartDrawer } from "@/components/cart/cart-drawer";
 import "./globals.css";
 
 const serifFont = Cormorant_Garamond({
@@ -34,6 +35,7 @@ export default function RootLayout({
     >
       <body className="min-h-full flex flex-col font-sans bg-cream text-charcoal">
         {children}
+        <CartDrawer />
       </body>
     </html>
   );
